@@ -1,0 +1,44 @@
+[b]Activity Finder Plus[/b] enhances the dungeon finder and LFG ready-check experience with pledge tracking, set collection progress, achievement status, and quick-select tools — on both keyboard and gamepad.
+
+[b]Dungeon finder[/b]
+[list]
+[*]Daily pledge and quest status on each dungeon row
+[*]Set collection progress per dungeon ([url=https://www.esoui.com/downloads/info2241-LibSets.html]LibSets[/url], optional)
+[*]Achievement icons for veteran hard mode, trifecta, and no-death runs
+[*]Veteran challenge checklist in the dungeon tooltip (or a separate window to avoid overlap with other addons)
+[*]Quick-select buttons: active pledges, incomplete skill quests, incomplete sets
+[*]Veteran Mode toggle for quick-select (normal vs veteran)
+[/list]
+
+[b]Gamepad[/b]
+[list]
+[*]Veteran challenge list in the dungeon description panel
+[*]Quick Select menu — pledge, set, and quest filters with Veteran Mode toggle
+[*]Assign under Settings > Controls > Activity Finder, or use /afpqs
+[/list]
+
+[b]Ready check & other[/b]
+[list]
+[*]Enhanced sound and on-screen notifications
+[*]Auto-accept ready checks (optional)
+[*]Auto-release in battlegrounds (optional)
+[*]Daily pledge summary: /pledge, /pl
+[/list]
+
+[b]Slash commands[/b]
+/afp — settings | /afpqs — gamepad Quick Select | /pledge /pl — daily pledges | /leave /lv — leave group
+
+[b]Requirements[/b]
+[url=https://www.esoui.com/downloads/info7-LibAddonMenu-2.0.html]LibAddonMenu-2.0[/url] (>= 43), [url=https://www.esoui.com/downloads/info3314-LibUndauntedPledges.html]LibUndauntedPledges[/url]
+Optional: [url=https://www.esoui.com/downloads/info2241-LibSets.html]LibSets[/url]
+
+[img]UPLOAD_URL_1[/img]
+[i]Dungeon list — pledge tags, set progress, achievement icons, and quick-select buttons[/i]
+
+[img]UPLOAD_URL_2[/img]
+[i]Veteran challenge details in the dungeon tooltip[/i]
+
+[img]UPLOAD_URL_3[/img]
+[i]Gamepad Quick Select with veteran challenge panel[/i]
+
+Upgrading from Group Synergizer? Settings migrate automatically on first load.
