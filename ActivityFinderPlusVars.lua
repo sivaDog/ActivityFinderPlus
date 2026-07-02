@@ -1,58 +1,88 @@
-GROUP_SYNERGIZER 					= {}
-GROUP_SYNERGIZER.name 				= "GroupSynergizer"
-GROUP_SYNERGIZER.version 			= "5.0.0"
-GROUP_SYNERGIZER.originalAuthor		= "scorpius2k1"
-GROUP_SYNERGIZER.maintainer			= "FirewoodDoge"
-GROUP_SYNERGIZER.maintainerGitHub	= "sivaDog"
-GROUP_SYNERGIZER.maintainerAccount	= "@FirewoodDoge"
-GROUP_SYNERGIZER.authorDisplay		= "FirewoodDoge (maintainer), scorpius2k1 (original)"
-GROUP_SYNERGIZER.originalAddonUrl	= "https://www.esoui.com/downloads/info2286-GroupSynergizer-EnhancedLFGFeaturesAutoAcceptQueBetterNotifications.html"
-GROUP_SYNERGIZER.repositoryUrl		= "https://github.com/sivaDog/UnofficialGroupSynergizer"
-GROUP_SYNERGIZER.variableVersion	= 2
-GROUP_SYNERGIZER.savedVariables		= nil
-GROUP_SYNERGIZER.eventManager 		= GetEventManager()
-GROUP_SYNERGIZER.playerName			= GetDisplayName()
-GROUP_SYNERGIZER.activityFinderCode	= -1
-GROUP_SYNERGIZER.perfectPixelCompat	= false
-GROUP_SYNERGIZER.BUICompat			= false
-GROUP_SYNERGIZER.showSpecificDung   = false
-GROUP_SYNERGIZER.firstRun   		= false
-GROUP_SYNERGIZER.groupTypes = {
-    [2] = true, -- normal dungeon
-    [3] = true, -- vet dungeon
-    [7] = true, -- battlegrounds
-    [8] = true,	-- battlegrounds
-}
-GROUP_SYNERGIZER.coolDownStatus		= {
-    --[LFG_COOLDOWN_QUEUE_LEFT] 		= false,
+ACTIVITY_FINDER_PLUS = {}
+
+ACTIVITY_FINDER_PLUS.name = "ActivityFinderPlus"
+ACTIVITY_FINDER_PLUS.version = "1.0.0"
+ACTIVITY_FINDER_PLUS.displayName = "Activity Finder Plus"
+ACTIVITY_FINDER_PLUS.author = "FirewoodDoge"
+ACTIVITY_FINDER_PLUS.maintainerAccount = "@FirewoodDoge"
+ACTIVITY_FINDER_PLUS.authorDisplay = ACTIVITY_FINDER_PLUS.author
+ACTIVITY_FINDER_PLUS.repositoryUrl = "https://github.com/sivaDog/ActivityFinderPlus"
+ACTIVITY_FINDER_PLUS.variableVersion = 1
+
+ACTIVITY_FINDER_PLUS.savedVariables = nil
+ACTIVITY_FINDER_PLUS.eventManager = GetEventManager()
+ACTIVITY_FINDER_PLUS.playerName = GetDisplayName()
+ACTIVITY_FINDER_PLUS.activityFinderCode = -1
+ACTIVITY_FINDER_PLUS.showSpecificDung = false
+ACTIVITY_FINDER_PLUS.libSetsAvailable = false
+
+ACTIVITY_FINDER_PLUS.coolDownStatus = {
     [LFG_COOLDOWN_ACTIVITY_STARTED] = false,
     [LFG_COOLDOWN_BATTLEGROUND_DESERTED] = false,
 }
-GROUP_SYNERGIZER.checkAuto			= {
-    top		= 0,
-    visible = false,
-}
-GROUP_SYNERGIZER.checkPledges		= {
-    button 	= nil,
-    state 	= BSTATE_NORMAL,
-}
-GROUP_SYNERGIZER.defaults 			= {
-    AutoAccept		= false,
-    AutoRelease		= false,
-    Enable 			= true,
-    EnhanceGAF		= true,
+
+ACTIVITY_FINDER_PLUS.checkPledges = { button = nil, state = BSTATE_NORMAL }
+ACTIVITY_FINDER_PLUS.checkSets = { button = nil, state = BSTATE_NORMAL }
+ACTIVITY_FINDER_PLUS.checkSkillQuests = { button = nil, state = BSTATE_NORMAL }
+ACTIVITY_FINDER_PLUS.checkVeteran = { label = nil, checkbox = nil, sessionEnabled = false }
+
+ACTIVITY_FINDER_PLUS.defaults = {
+    AutoAccept = false,
+    AutoRelease = false,
+    EnhanceGAF = true,
     ShowSetCollectionProgress = true,
-    NotifyDelay		= 2,
-    ScreenNotify	= true,
-    SlashCommands	= true,
-    SoundNotify		= true,
+    NotifyDelay = 2,
+    ScreenNotify = true,
+    SoundNotify = true,
+    gamepadQuickSelectKeybindTouched = false,
+    gamepadQuickSelectBinding = nil,
 }
-GROUP_SYNERGIZER.Localization = {
 
-    language 		= string.lower(GetCVar("language.2")),
-
-    Translation=GROUP_SYNERGIZER_PLEDGES,
-    Loc	=function(var) return GROUP_SYNERGIZER.Localization.Translation[var] or var end
+ACTIVITY_FINDER_PLUS.runtimeSettingKeys = {
+    "SoundNotify",
+    "ScreenNotify",
+    "AutoRelease",
+    "AutoAccept",
+    "NotifyDelay",
+    "EnhanceGAF",
+    "ShowSetCollectionProgress",
 }
--- /script SetCVar("language.2", "en")
--- /script d(GetCompletedQuestInfo(questID))
+
+ACTIVITY_FINDER_PLUS.Localization = {
+    language = string.lower(GetCVar("language.2")),
+    Translation = ACTIVITY_FINDER_PLUS_STRINGS,
+    Loc = function(key)
+        return ACTIVITY_FINDER_PLUS.Localization.Translation[key] or key
+    end,
+}
+
+function ACTIVITY_FINDER_PLUS.GetSetting(key)
+    local savedVariables = ACTIVITY_FINDER_PLUS.savedVariables
+    if not savedVariables then
+        return ACTIVITY_FINDER_PLUS.defaults[key]
+    end
+
+    local value = savedVariables[key]
+    if value == nil then
+        return ACTIVITY_FINDER_PLUS.defaults[key]
+    end
+    return value
+end
+
+function ACTIVITY_FINDER_PLUS.SetSetting(key, value)
+    ACTIVITY_FINDER_PLUS.savedVariables[key] = value
+    ACTIVITY_FINDER_PLUS[key] = value
+end
+
+function ACTIVITY_FINDER_PLUS.ApplyRuntimeSettings()
+    for _, key in ipairs(ACTIVITY_FINDER_PLUS.runtimeSettingKeys) do
+        ACTIVITY_FINDER_PLUS[key] = ACTIVITY_FINDER_PLUS.GetSetting(key)
+    end
+end
+
+function ACTIVITY_FINDER_PLUS.RefreshLocalization()
+    if ACTIVITY_FINDER_PLUS_STRINGS then
+        ACTIVITY_FINDER_PLUS.Localization.Translation = ACTIVITY_FINDER_PLUS_STRINGS
+    end
+    ACTIVITY_FINDER_PLUS.Localization.language = string.lower(GetCVar("language.2"))
+end

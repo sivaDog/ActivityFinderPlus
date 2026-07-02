@@ -1,116 +1,88 @@
 local LAM = LibAddonMenu2
+local PANEL_NAME = "ACTIVITY_FINDER_PLUS_Settings"
 
-function GROUP_SYNERGIZER.CreateSettingsWindow()
+local function RefreshCollectionDisplay()
+    ACTIVITY_FINDER_PLUS.BuildCollectionCache()
+    if ACTIVITY_FINDER_PLUS.showSpecificDung then
+        ACTIVITY_FINDER_PLUS.DecorateDungeonRows()
+    end
+end
+
+local function CheckboxOption(key, nameId, tooltipId, defaultValue, extra)
+    local option = {
+        type = "checkbox",
+        name = GetString(nameId),
+        tooltip = GetString(tooltipId),
+        default = defaultValue,
+        getFunc = function() return ACTIVITY_FINDER_PLUS.GetSetting(key) end,
+        setFunc = function(value) ACTIVITY_FINDER_PLUS.SetSetting(key, value) end,
+    }
+
+    if extra then
+        for optionKey, optionValue in pairs(extra) do
+            option[optionKey] = optionValue
+        end
+    end
+
+    return option
+end
+
+function ACTIVITY_FINDER_PLUS.CreateSettingsWindow()
     local panelData = {
         type = "panel",
-        name = "Group Synergizer",
-        displayName = "Group Synergizer",
-        author = GROUP_SYNERGIZER.authorDisplay,
-        version = GROUP_SYNERGIZER.version,
-        website = GROUP_SYNERGIZER.repositoryUrl,
-        slashCommand = "/gs",
+        name = ACTIVITY_FINDER_PLUS.displayName,
+        displayName = ACTIVITY_FINDER_PLUS.displayName,
+        author = ACTIVITY_FINDER_PLUS.authorDisplay,
+        version = ACTIVITY_FINDER_PLUS.version,
+        website = ACTIVITY_FINDER_PLUS.repositoryUrl,
+        slashCommand = "/afp",
         registerForRefresh = true,
         registerForDefaults = true,
     }
-    LAM:RegisterAddonPanel("GROUP_SYNERGIZER_Settings", panelData)
+    LAM:RegisterAddonPanel(PANEL_NAME, panelData)
 
     local optionsData = {
-        { type = "divider", height = 15, alpha = 1.0, width = "full" },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_ENABLE),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_ENABLE_TT),
-            default = true,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.Enable end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.Enable = v GROUP_SYNERGIZER.Enable = v end,
-        },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_SOUND),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_SOUND_TT),
-            default = true,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.SoundNotify end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.SoundNotify = v GROUP_SYNERGIZER.SoundNotify = v end,
-        },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_SCREEN),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_SCREEN_TT),
-            default = true,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.ScreenNotify end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.ScreenNotify = v GROUP_SYNERGIZER.ScreenNotify = v end,
-        },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_ENHANCE),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_ENHANCE_TT),
-            default = true,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.EnhanceGAF end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.EnhanceGAF = v GROUP_SYNERGIZER.EnhanceGAF = v end,
-        },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_SET_COLLECTION),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_SET_COLLECTION_TT),
-            default = true,
-            disabled = function() return not GROUP_SYNERGIZER.libSetsAvailable end,
-            getFunc = function()
-                if GROUP_SYNERGIZER.savedVariables.ShowSetCollectionProgress == nil then
-                    return GROUP_SYNERGIZER.defaults.ShowSetCollectionProgress
-                end
-                return GROUP_SYNERGIZER.savedVariables.ShowSetCollectionProgress
-            end,
-            setFunc = function(v)
-                GROUP_SYNERGIZER.savedVariables.ShowSetCollectionProgress = v
-                GROUP_SYNERGIZER.ShowSetCollectionProgress = v
-                if GROUP_SYNERGIZER.BuildCollectionCache then
-                    GROUP_SYNERGIZER.BuildCollectionCache()
-                end
-                if GROUP_SYNERGIZER.showSpecificDung and GROUP_SYNERGIZER.DecorateDungeonRows then
-                    GROUP_SYNERGIZER.DecorateDungeonRows()
-                end
-            end,
-        },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_ACCEPT),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_ACCEPT_TT),
-            default = false,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.AutoAccept end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.AutoAccept = v GROUP_SYNERGIZER.AutoAccept = v end,
-        },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_RELEASE),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_RELEASE_TT),
-            default = false,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.AutoRelease end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.AutoRelease = v GROUP_SYNERGIZER.AutoRelease = v end,
-        },
-        {
-            type = "checkbox",
-            name = GetString(SI_GROUP_SYNERGIZER_SLASH),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_SLASH_TT),
-            default = true,
-            warning = SI_GROUP_SYNERGIZER_SLASH_WARN,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.SlashCommands end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.SlashCommands = v GROUP_SYNERGIZER.SlashCommands = v end,
-        },
+        { type = "header", name = GetString(SI_ACTIVITY_FINDER_PLUS_HEADER_LFG) },
+        CheckboxOption("SoundNotify", SI_ACTIVITY_FINDER_PLUS_SOUND, SI_ACTIVITY_FINDER_PLUS_SOUND_TT, true),
+        CheckboxOption("ScreenNotify", SI_ACTIVITY_FINDER_PLUS_SCREEN, SI_ACTIVITY_FINDER_PLUS_SCREEN_TT, true),
+        CheckboxOption("AutoAccept", SI_ACTIVITY_FINDER_PLUS_ACCEPT, SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT, false),
         {
             type = "slider",
-            name = GetString(SI_GROUP_SYNERGIZER_DELAY),
-            tooltip = GetString(SI_GROUP_SYNERGIZER_DELAY_TT),
-            min = 1, max = 5, step = 1, default = 2,
-            getFunc = function() return GROUP_SYNERGIZER.savedVariables.NotifyDelay end,
-            setFunc = function(v) GROUP_SYNERGIZER.savedVariables.NotifyDelay = v GROUP_SYNERGIZER.NotifyDelay = v end,
+            name = GetString(SI_ACTIVITY_FINDER_PLUS_DELAY),
+            tooltip = GetString(SI_ACTIVITY_FINDER_PLUS_DELAY_TT),
+            min = 1,
+            max = 5,
+            step = 1,
+            default = 2,
+            disabled = function() return not ACTIVITY_FINDER_PLUS.SoundNotify end,
+            getFunc = function() return ACTIVITY_FINDER_PLUS.GetSetting("NotifyDelay") end,
+            setFunc = function(value) ACTIVITY_FINDER_PLUS.SetSetting("NotifyDelay", value) end,
         },
+
+        { type = "header", name = GetString(SI_ACTIVITY_FINDER_PLUS_HEADER_FINDER) },
+        CheckboxOption("EnhanceGAF", SI_ACTIVITY_FINDER_PLUS_ENHANCE, SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT, true),
+        CheckboxOption("ShowSetCollectionProgress", SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION, SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT, true, {
+            disabled = function() return not ACTIVITY_FINDER_PLUS.libSetsAvailable end,
+            setFunc = function(value)
+                ACTIVITY_FINDER_PLUS.SetSetting("ShowSetCollectionProgress", value)
+                RefreshCollectionDisplay()
+            end,
+        }),
+
+        { type = "header", name = GetString(SI_ACTIVITY_FINDER_PLUS_HEADER_OTHER) },
+        CheckboxOption("AutoRelease", SI_ACTIVITY_FINDER_PLUS_RELEASE, SI_ACTIVITY_FINDER_PLUS_RELEASE_TT, false),
+        { type = "description", text = GetString(SI_ACTIVITY_FINDER_PLUS_SLASH_TT) },
+
         { type = "divider", height = 15, alpha = 1.0, width = "full" },
         {
             type = "button",
-            name = GetString(SI_GROUP_SYNERGIZER_FEEDBACK),
-            func = function() MAIN_MENU_KEYBOARD:ShowScene("mailSend") MAIL_SEND:SetReply(GROUP_SYNERGIZER.maintainerAccount, GROUP_SYNERGIZER.name) end,
-            tooltip = GetString(SI_GROUP_SYNERGIZER_FEEDBACK_TT),
+            name = GetString(SI_ACTIVITY_FINDER_PLUS_FEEDBACK),
+            func = function()
+                MAIN_MENU_KEYBOARD:ShowScene("mailSend")
+                MAIL_SEND:SetReply(ACTIVITY_FINDER_PLUS.maintainerAccount, ACTIVITY_FINDER_PLUS.name)
+            end,
+            tooltip = GetString(SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT),
         },
     }
-    LAM:RegisterOptionControls("GROUP_SYNERGIZER_Settings", optionsData)
+    LAM:RegisterOptionControls(PANEL_NAME, optionsData)
 end

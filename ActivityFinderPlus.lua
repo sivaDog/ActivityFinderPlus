@@ -1,58 +1,67 @@
-local function OnAddOnLoaded(event, addonName)
-    if addonName ~= GROUP_SYNERGIZER.name then return end
+local addonName = ACTIVITY_FINDER_PLUS.name
+local em = ACTIVITY_FINDER_PLUS.eventManager
+local LEGACY_SAVED_VARS_NAME = "GroupSynergizerSavedVars"
 
-    -- Saved Variables
-    GROUP_SYNERGIZER.savedVariables = ZO_SavedVars:NewAccountWide("GroupSynergizerSavedVars", GROUP_SYNERGIZER.variableVersion, nil, GROUP_SYNERGIZER.defaults, GetWorldName()) --ZO_SavedVars:New("GroupSynergizerSavedVars", 1, nil, GROUP_SYNERGIZER.defaults)
-    GROUP_SYNERGIZER.Enable         = GROUP_SYNERGIZER.savedVariables.Enable
-    GROUP_SYNERGIZER.SoundNotify    = GROUP_SYNERGIZER.savedVariables.SoundNotify
-    GROUP_SYNERGIZER.ScreenNotify   = GROUP_SYNERGIZER.savedVariables.ScreenNotify
-    GROUP_SYNERGIZER.AutoRelease    = GROUP_SYNERGIZER.savedVariables.AutoRelease
-    GROUP_SYNERGIZER.AutoAccept     = GROUP_SYNERGIZER.savedVariables.AutoAccept
-    GROUP_SYNERGIZER.NotifyDelay    = GROUP_SYNERGIZER.savedVariables.NotifyDelay
-    GROUP_SYNERGIZER.EnhanceGAF     = GROUP_SYNERGIZER.savedVariables.EnhanceGAF
-    GROUP_SYNERGIZER.ShowSetCollectionProgress = GROUP_SYNERGIZER.savedVariables.ShowSetCollectionProgress
-    if GROUP_SYNERGIZER.ShowSetCollectionProgress == nil then
-        GROUP_SYNERGIZER.ShowSetCollectionProgress = GROUP_SYNERGIZER.defaults.ShowSetCollectionProgress
-    end
-    GROUP_SYNERGIZER.SlashCommands  = GROUP_SYNERGIZER.savedVariables.SlashCommands
-    GROUP_SYNERGIZER.firstRun       = GROUP_SYNERGIZER.savedVariables.firstRun
+local function MigrateLegacySavedVariables(savedVariables)
+    if savedVariables.migratedFromGroupSynergizer then return end
 
-    -- Slash Commands
-    if GROUP_SYNERGIZER.SlashCommands then
-        SLASH_COMMANDS["/pledges"] = GROUP_SYNERGIZER.DailyPledges
-        SLASH_COMMANDS["/pledge"]  = GROUP_SYNERGIZER.DailyPledges
-        SLASH_COMMANDS["/pl"]      = GROUP_SYNERGIZER.DailyPledges
-        SLASH_COMMANDS["/leave"]   = GROUP_SYNERGIZER.leaveGroup
-        SLASH_COMMANDS["/lv"]      = GROUP_SYNERGIZER.leaveGroup
+    local legacy = ZO_SavedVars:NewAccountWide(
+        LEGACY_SAVED_VARS_NAME,
+        ACTIVITY_FINDER_PLUS.variableVersion,
+        nil,
+        {},
+        GetWorldName()
+    )
+
+    for key in pairs(ACTIVITY_FINDER_PLUS.defaults) do
+        if savedVariables[key] == nil and legacy[key] ~= nil then
+            savedVariables[key] = legacy[key]
+        end
     end
 
-    -- Settings
-    GROUP_SYNERGIZER.CreateSettingsWindow()
-
-    -- Pledges
-    GROUP_SYNERGIZER.Pledges()
-
-    -- Battlegrounds
-    GROUP_SYNERGIZER.Battlegrounds()
-
-    -- Unregister Addon Load
-    GROUP_SYNERGIZER.eventManager:UnregisterForEvent(GROUP_SYNERGIZER.name, EVENT_ADD_ON_LOADED)
+    savedVariables.migratedFromGroupSynergizer = true
 end
 
-EVENT_MANAGER:RegisterForEvent(GROUP_SYNERGIZER.name.."_OnPlayerActivated", EVENT_PLAYER_ACTIVATED, function()
-    if not GROUP_SYNERGIZER.firstRun then
-        GROUP_SYNERGIZER.firstRun = true
-        GROUP_SYNERGIZER.savedVariables.firstRun = true
-        DoCommand("/gs")
-    end
-    EVENT_MANAGER:UnregisterForEvent(GROUP_SYNERGIZER.name.."_OnPlayerActivated", EVENT_PLAYER_ACTIVATED)
-end)
+local function LoadSavedVariables()
+    ACTIVITY_FINDER_PLUS.savedVariables = ZO_SavedVars:NewAccountWide(
+        "ActivityFinderPlusSavedVars",
+        ACTIVITY_FINDER_PLUS.variableVersion,
+        nil,
+        ACTIVITY_FINDER_PLUS.defaults,
+        GetWorldName()
+    )
 
--------------------------
--- Registers
--------------------------
-GROUP_SYNERGIZER.eventManager:RegisterForEvent(GROUP_SYNERGIZER.name, EVENT_ADD_ON_LOADED, OnAddOnLoaded)
-GROUP_SYNERGIZER.eventManager:RegisterForEvent(GROUP_SYNERGIZER.name, EVENT_ACTIVITY_FINDER_STATUS_UPDATE, GROUP_SYNERGIZER.OnActivityFinderStatusUpdate)
-GROUP_SYNERGIZER.eventManager:RegisterForEvent(GROUP_SYNERGIZER.name, EVENT_BATTLEGROUND_STATE_CHANGED, GROUP_SYNERGIZER.OnBattlegroundStateChanged)
-DEATH_FRAGMENT:RegisterCallback("StateChange", GROUP_SYNERGIZER.OnDeathFragmentStateChange)
-KEYBOARD_GROUP_MENU_SCENE:RegisterCallback("StateChange", GROUP_SYNERGIZER.groupFinderVisible)
+    MigrateLegacySavedVariables(ACTIVITY_FINDER_PLUS.savedVariables)
+    ACTIVITY_FINDER_PLUS.ApplyRuntimeSettings()
+end
+
+local function RegisterSlashCommands()
+    for _, command in ipairs({ "/pledges", "/pledge", "/pl" }) do
+        SLASH_COMMANDS[command] = ACTIVITY_FINDER_PLUS.DailyPledges
+    end
+
+    SLASH_COMMANDS["/leave"] = ACTIVITY_FINDER_PLUS.leaveGroup
+    SLASH_COMMANDS["/lv"] = ACTIVITY_FINDER_PLUS.leaveGroup
+end
+
+local function InitializeAddon()
+    ACTIVITY_FINDER_PLUS.RefreshLocalization()
+    LoadSavedVariables()
+    RegisterSlashCommands()
+    ACTIVITY_FINDER_PLUS.CreateSettingsWindow()
+    ACTIVITY_FINDER_PLUS.InitializePledges()
+end
+
+local function OnAddOnLoaded(_, loadedAddonName)
+    if loadedAddonName ~= addonName then return end
+
+    InitializeAddon()
+    em:UnregisterForEvent(addonName, EVENT_ADD_ON_LOADED)
+end
+
+em:RegisterForEvent(addonName, EVENT_ADD_ON_LOADED, OnAddOnLoaded)
+em:RegisterForEvent(addonName .. "_ActivityFinder", EVENT_ACTIVITY_FINDER_STATUS_UPDATE, ACTIVITY_FINDER_PLUS.OnActivityFinderStatusUpdate)
+em:RegisterForEvent(addonName .. "_BattlegroundState", EVENT_BATTLEGROUND_STATE_CHANGED, ACTIVITY_FINDER_PLUS.OnBattlegroundStateChanged)
+
+DEATH_FRAGMENT:RegisterCallback("StateChange", ACTIVITY_FINDER_PLUS.OnDeathFragmentStateChange)
+KEYBOARD_GROUP_MENU_SCENE:RegisterCallback("StateChange", ACTIVITY_FINDER_PLUS.groupFinderVisible)

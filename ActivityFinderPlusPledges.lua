@@ -1,73 +1,4 @@
-local DungeonData={
-    [1]={--Maj al-Ragath
-        {QID = 3993, pledge=5247, normal={id=2, ac=294}, vet={id=299, ac=1556, hm=1561, tt=1559, nd=1560}},-- "Fungal Grotto I"
-        {QID = 4597, pledge=5246, normal={id=300, ac=1555}, vet={id=301, ac=545, hm=451, tt=449, nd=1564}},-- "Banished Cells II"
-        {QID = 4145, pledge=5274, normal={id=5, ac=78}, vet={id=309, ac=1581, hm=1586, tt=1584, nd=1585}},-- "Darkshade Caverns I"
-        {QID = 4675, pledge=5277, normal={id=303, ac=1579}, vet={id=302, ac=459, hm=463, tt=461, nd=1580}},-- "Elden Hollow II"
-        {QID = 4246, pledge=5278, normal={id=6, ac=79}, vet={id=306, ac=1589, hm=1594, tt=1592, nd=1593}},-- "Wayrest Sewers I"
-        {QID = 4555, pledge=5273, normal={id=316, ac=1571}, vet={id=19, ac=421, hm=448, tt=446, nd=1572}},-- "Spindleclutch II"
-        {QID = 4107, pledge=5244, normal={id=4, ac=325}, vet={id=20, ac=1549, hm=1554, tt=1552, nd=1553}},-- "Banished Cells I"
-        {QID = 4303, pledge=5248, normal={id=18, ac=1562}, vet={id=312, ac=343, hm=342, tt=340, nd=1563}},-- "Fungal Grotto II"
-        {QID = 4054, pledge=5260, normal={id=3, ac=301}, vet={id=315, ac=1565, hm=1570, tt=1568, nd=1569}},-- "Spindleclutch I"
-        {QID = 4641, pledge=5275, normal={id=308, ac=1587}, vet={id=21, ac=464, hm=467, tt=465, nd=1588}},-- "Darkshade Caverns II"
-        {QID = 4336, pledge=5276, normal={id=7, ac=11}, vet={id=23, ac=1573, hm=1578, tt=1576, nd=1577}},-- "Elden Hollow I"
-        {QID = 4813, pledge=5282, normal={id=22, ac=1595}, vet={id=307, ac=678, hm=681, tt=679, nd=1596}},-- "Wayrest Sewers II"
-    },
-    [2]={--Glirion the Redbeard
-        {QID = 4733, pledge=5307, normal={id=16, ac=417}, vet={id=313, ac=1635, hm=1640, tt=1638, nd=1639}},-- "Selene's Web"
-        {QID = 5120, pledge=5381, normal={id=322, ac=1603}, vet={id=267, ac=878, hm=1114, tt=1108, nd=1107}},-- "City of Ash II"
-        {QID = 4379, pledge=5283, normal={id=9, ac=80}, vet={id=261, ac=1610, hm=1615, tt=1613, nd=1614}},-- "Crypt of Hearts I"
-        {QID = 4432, pledge=5303, normal={id=12, ac=391}, vet={id=304, ac=1629, hm=1634, tt=1632, nd=1633}},-- "Volenfell"
-        {QID = 4469, pledge=5306, normal={id=14, ac=393}, vet={id=320, ac=1641, hm=1646, tt=1644, nd=1645}},-- "Blessed Crucible"
-        {QID = 4346, pledge=5291, normal={id=11, ac=357}, vet={id=319, ac=1623, hm=1628, tt=1626, nd=1627}},-- "Direfrost Keep"
-        {QID = 4822, pledge=5309, normal={id=17, ac=570}, vet={id=314, ac=1653, hm=1658, tt=1656, nd=1657}},-- "Vaults of Madness"
-        {QID = 5113, pledge=5284, normal={id=317, ac=1616}, vet={id=318, ac=876, hm=1084, tt=941, nd=942}},-- "Crypt of Hearts II"
-        {QID = 4778, pledge=5290, normal={id=10, ac=551}, vet={id=310, ac=1597, hm=1602, tt=1600, nd=1601}},-- "City of Ash I"
-        {QID = 4538, pledge=5301, normal={id=13, ac=81}, vet={id=311, ac=1617, hm=1622, tt=1620, nd=1621}},-- "Tempest Island"
-        {QID = 4589, pledge=5305, normal={id=15, ac=410}, vet={id=321, ac=1647, hm=1652, tt=1650, nd=1651}},-- "Blackheart Haven"
-        {QID = 4202, pledge=5288, normal={id=8, ac=272}, vet={id=305, ac=1604, hm=1609, tt=1607, nd=1608}},-- "Arx Corinium"
-    },
-    [3]={--Urgarlag Chief-bane (DLC)
-        {QID = 5136, pledge=5382, normal={id=289, ac=1345}, vet={id=268, ac=880, hm=1303, tt=1128, nd=1129}},-- "Imperial City Prison"
-        {QID = 5403, pledge=5636, normal={id=293, ac=1504}, vet={id=294, ac=1505, hm=1506, tt=1507, nd=1508}},-- "Ruins of Mazzatun"
-        {QID = 5342, pledge=5431, normal={id=288, ac=1346}, vet={id=287, ac=1120, hm=1279, tt=1275, nd=1276}},-- "White-Gold Tower"
-        {QID = 5702, pledge=5780, normal={id=295, ac=1522}, vet={id=296, ac=1523, hm=1524, tt=1525, nd=1526}},-- "Cradle of Shadows"
-        {QID = 5889, pledge=6053, normal={id=324, ac=1690}, vet={id=325, ac=1691, hm=1696, tt=1694, nd=1695}},-- "Bloodroot Forge"
-        {QID = 5891, pledge=6054, normal={id=368, ac=1698}, vet={id=369, ac=1699, hm=1704, tt=1702, nd=1703}},-- "Falkreath Hold"
-        {QID = 6064, pledge=6155, normal={id=420, ac=1959}, vet={id=421, ac=1960, hm=1965, tt=1963, nd=1964}},-- "Fang Lair"
-        {QID = 6065, pledge=6154, normal={id=418, ac=1975}, vet={id=419, ac=1976, hm=1981, tt=1979, nd=1980}},-- "Scalecaller Peak"
-        {QID = 6186, pledge=6187, normal={id=426, ac=2152}, vet={id=427, ac=2153, hm=2154, tt=2155, nd=2156}},-- "Moon Hunter Keep"
-        {QID = 6188, pledge=6189, normal={id=428, ac=2162}, vet={id=429, ac=2163, hm=2164, tt=2165, nd=2166}},-- "March of Sacrifices"
-        {QID = 6251, pledge=6252, normal={id=435, ac=2270}, vet={id=436, ac=2271, hm=2272, tt=2273, nd=2274}},-- "Depths of Malatar"
-        {QID = 6249, pledge=6250, normal={id=433, ac=2260}, vet={id=434, ac=2261, hm=2262, tt=2263, nd=2264}},-- "Frostvault"
-        {QID = 6349, pledge=6350, normal={id=494, ac=2415}, vet={id=495, ac=2416, hm=2417, tt=2418, nd=2419}},-- "Moongrave Fane"
-        {QID = 6351, pledge=6352, normal={id=496, ac=2425}, vet={id=497, ac=2426, hm=2427, tt=2428, nd=2429}},-- "Lair of Maarselok"
-        {QID = 6414, pledge=6415, normal={id=503, ac=2539}, vet={id=504, ac=2540, hm=2541, tt=2542, nd=2543}},-- "Icereach"
-        {QID = 6416, pledge=6417, normal={id=505, ac=2549}, vet={id=506, ac=2550, hm=2551, tt=2552, nd=2553}},-- "Unhallowed Grave"
-        {QID = 6505, pledge=6506, normal={id=507, ac=2694}, vet={id=508, ac=2695, hm=2755, tt=2697, nd=2698}},-- "Stone Garden"
-        {QID = 6507, pledge=6508, normal={id=509, ac=2704}, vet={id=510, ac=2705, hm=2706, tt=2707, nd=2708}},-- "Castle Thorn"
-        {QID = 6576, pledge=6577, normal={id=591, ac=2831}, vet={id=592, ac=2832, hm=2833, tt=2834, nd=2835}},-- "Black Drake Villa"
-        {QID = 6578, pledge=6579, normal={id=593, ac=2841}, vet={id=594, ac=2842, hm=2843, tt=2844, nd=2845}},-- "The Cauldron"
-        {QID = 6683, pledge=6684, normal={id=595, ac=3016}, vet={id=596, ac=3017, hm=3018, tt=3019, nd=3020}},-- "Red Petal Bastion"
-        {QID = 6685, pledge=6686, normal={id=597, ac=3026}, vet={id=598, ac=3027, hm=3028, tt=3029, nd=3030}},-- "The Dread Cellar"
-        {QID = 6740, pledge=6741, normal={id=599, ac=3104}, vet={id=600, ac=3105, hm=3153, tt=3107, nd=3108}},-- "Coral Aerie"
-        {QID = 6742, pledge=6743, normal={id=601, ac=3114}, vet={id=602, ac=3115, hm=3154, tt=3117, nd=3118}},-- "Shipwright's Regret"
-        {QID = 6835, pledge=6836, normal={id=608, ac=3375}, vet={id=609, ac=3376, hm=3377, tt=3378, nd=3379}},-- "Earthen Root Enclave"
-        {QID = 6837, pledge=6838, normal={id=610, ac=3394}, vet={id=611, ac=3395, hm=3396, tt=3397, nd=3398}},-- "Graven Deep"
-        {QID = 6896, pledge=6897, normal={id=613, ac=3468}, vet={id=614, ac=3469, hm=3470, tt=3471, nd=3472}},-- "Bal Sunnar"
-        {QID = 7027, pledge=7028, normal={id=615, ac=3529}, vet={id=616, ac=3530, hm=3531, tt=3532, nd=3533}},-- "Scrivener's Hall"
-        {QID = 7105, pledge=7106, normal={id=638, ac=3810}, vet={id=639, ac=3811, hm=3812, tt=3813, nd=3814}},-- "Oathsworn Pit"
-        {QID = 7155, pledge=7156, normal={id=640, ac=3851}, vet={id=641, ac=3852, hm=3853, tt=3854, nd=3855}},-- "Bedlam Veil"
-        {QID = 7235, pledge=7236, normal={id=855, ac=4109}, vet={id=856, ac=4110, hm=4111, tt=4112, nd=4113}},-- "Exiled Redoubt"
-        {QID = 7237, pledge=7238, normal={id=857, ac=4128}, vet={id=858, ac=4129, hm=4130, tt=4131, nd=4132}},-- "Lep Seclusa"
-        {QID = 7320, pledge=7321, normal={id=1037, ac=4311}, vet={id=1038, ac=4312, hm=4313, tt=4314, nd=4315}},-- "Naj-Caldeesh"
-        {QID = 7323, pledge=7324, normal={id=1039, ac=4334}, vet={id=1040, ac=4335, hm=4336, tt=4337, nd=4338}},-- "Black Gem Foundry"
-    },
-}
-
--- Expose dungeon metadata for external patches/addons
-GROUP_SYNERGIZER = GROUP_SYNERGIZER or {}
-GROUP_SYNERGIZER.DungeonData = DungeonData
+local DungeonData = ACTIVITY_FINDER_PLUS.DungeonData
 
 local ICON_QUEST_DONE = "|t16:16:/esoui/art/cadwell/check.dds|t"
 local ICON_HARDMODE = "|t20:20:/esoui/art/unitframes/target_veteranrank_icon.dds|t"
@@ -117,24 +48,12 @@ local function GetCollectionProgressForZone(zoneId)
 end
 
 local function BuildCollectionText(activityId)
-    if not GROUP_SYNERGIZER.ShowSetCollectionProgress then return "" end
-    local entry = GROUP_SYNERGIZER.collectionCache and GROUP_SYNERGIZER.collectionCache[activityId]
+    if not ACTIVITY_FINDER_PLUS.ShowSetCollectionProgress then return "" end
+    local entry = ACTIVITY_FINDER_PLUS.collectionCache and ACTIVITY_FINDER_PLUS.collectionCache[activityId]
     if not entry then return "" end
 
     local color = entry.unlocked >= entry.total and "00ff00" or "aaaaaa"
     return string.format("|c%s%d/%d|r ", color, entry.unlocked, entry.total)
-end
-
-local function FindDungeonByActivityId(activityId, mode)
-    if not activityId or not mode then return nil end
-    for npc = 1, 3 do
-        for _, dungeon in ipairs(DungeonData[npc]) do
-            local info = dungeon[mode]
-            if info and info.id == activityId then
-                return dungeon
-            end
-        end
-    end
 end
 
 local function GetPledgeStatus(pledges, pledgeName)
@@ -152,6 +71,32 @@ end
 local function HasIncompletePledge(pledges, pledgeName)
     local complete = GetPledgeStatus(pledges, pledgeName)
     return complete == false
+end
+
+local function HasIncompleteSkillQuest(dungeon)
+    return dungeon ~= nil and dungeon.questId ~= nil and GetCompletedQuestInfo(dungeon.questId) == ""
+end
+
+local function HasAnyIncompleteSkillQuest()
+    local normalIndex = ACTIVITY_FINDER_PLUS.FinderNormalIndex
+    if not normalIndex then return false end
+    for _, dungeon in pairs(normalIndex) do
+        if HasIncompleteSkillQuest(dungeon) then
+            return true
+        end
+    end
+    return false
+end
+
+function ACTIVITY_FINDER_PLUS.HasAnyIncompleteSkillQuest()
+    return HasAnyIncompleteSkillQuest()
+end
+
+local function RefreshSkillQuestButtonState()
+    local button = ACTIVITY_FINDER_PLUS.checkSkillQuests.button
+    if not button or button:IsHidden() then return end
+    if IsUnitGrouped("player") and not IsUnitGroupLeader("player") then return end
+    button:SetState(HasAnyIncompleteSkillQuest() and BSTATE_NORMAL or BSTATE_DISABLED)
 end
 
 local function GetTodayDailyPledgeNames()
@@ -175,11 +120,11 @@ end
 
 local function BuildPledgeText(completed, daily)
     if daily == nil then return "" end
-    local dailyText = daily and (" ["..GROUP_SYNERGIZER.Localization.Loc("PledgeDaily").."]") or ""
+    local dailyText = daily and (" ["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeDaily").."]") or ""
     if completed == false then
-        return "|cb7ff00 "..dailyText.."|r |c00ffff["..GROUP_SYNERGIZER.Localization.Loc("PledgeQuest").."]|r"
+        return "|cb7ff00 "..dailyText.."|r |c00ffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeQuest").."]|r"
     elseif completed == true then
-        return "|cb7ff00 "..dailyText.."|r |cffffff["..GROUP_SYNERGIZER.Localization.Loc("PledgeDone").."]|r"
+        return "|cb7ff00 "..dailyText.."|r |cffffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeDone").."]|r"
     elseif daily then
         return " |cb7ff00"..dailyText.."|r"
     end
@@ -205,12 +150,12 @@ local function BuildIconText(cacheEntry)
 end
 
 -- Quest/achievement completion: cached at login and refreshed on achievement events.
-function GROUP_SYNERGIZER.BuildCompletionCache()
+function ACTIVITY_FINDER_PLUS.BuildCompletionCache()
     local cache = {}
     for npc = 1, 3 do
         for _, dungeon in ipairs(DungeonData[npc]) do
-            local questDone = GetCompletedQuestInfo(dungeon.QID) ~= ""
-            local pledgeName = GetQuestName(dungeon.pledge)
+            local questDone = GetCompletedQuestInfo(dungeon.questId) ~= ""
+            local pledgeName = GetQuestName(dungeon.pledgeId)
             for _, mode in ipairs({ "normal", "vet" }) do
                 local modeData = dungeon[mode]
                 if modeData and modeData.id then
@@ -225,14 +170,14 @@ function GROUP_SYNERGIZER.BuildCompletionCache()
             end
         end
     end
-    GROUP_SYNERGIZER.completionCache = cache
+    ACTIVITY_FINDER_PLUS.completionCache = cache
 end
 
 -- Set collection book progress per dungeon (LibSets + zone mapping).
-function GROUP_SYNERGIZER.BuildCollectionCache()
+function ACTIVITY_FINDER_PLUS.BuildCollectionCache()
     local cache = {}
-    if not GROUP_SYNERGIZER.ShowSetCollectionProgress or not IsLibSetsAvailable() then
-        GROUP_SYNERGIZER.collectionCache = cache
+    if not ACTIVITY_FINDER_PLUS.ShowSetCollectionProgress or not IsLibSetsAvailable() then
+        ACTIVITY_FINDER_PLUS.collectionCache = cache
         return
     end
 
@@ -257,45 +202,45 @@ function GROUP_SYNERGIZER.BuildCollectionCache()
             end
         end
     end
-    GROUP_SYNERGIZER.collectionCache = cache
+    ACTIVITY_FINDER_PLUS.collectionCache = cache
 end
 
 -- Today's daily pledge dungeon names: date-driven, safe to cache per session.
-function GROUP_SYNERGIZER.RefreshDailyPledges()
-    GROUP_SYNERGIZER.dailyPledgeNames = GetTodayDailyPledgeNames()
+function ACTIVITY_FINDER_PLUS.RefreshDailyPledges()
+    ACTIVITY_FINDER_PLUS.dailyPledgeNames = GetTodayDailyPledgeNames()
 end
 
 -- Active pledge journal state: always live (accept/complete during play).
-function GROUP_SYNERGIZER.RefreshPledgeJournal()
-    GROUP_SYNERGIZER.pledgeJournal = GROUP_SYNERGIZER.GetGoalPledges()
+function ACTIVITY_FINDER_PLUS.RefreshPledgeJournal()
+    ACTIVITY_FINDER_PLUS.pledgeJournal = ACTIVITY_FINDER_PLUS.GetGoalPledges()
 end
 
-function GROUP_SYNERGIZER.DecorateDungeonRow(obj)
-    if not GROUP_SYNERGIZER.EnhanceGAF or not obj or not obj.node or not obj.node.data then return end
+function ACTIVITY_FINDER_PLUS.DecorateDungeonRow(obj)
+    if not ACTIVITY_FINDER_PLUS.EnhanceGAF or not obj or not obj.node or not obj.node.data then return end
     local activityId = obj.node.data.id
 
     local collectionText = BuildCollectionText(activityId)
     if collectionText ~= "" then
-        GROUP_SYNERGIZER.Label(
-            "GROUP_SYNERGIZER_DungeonCollection_" .. activityId,
+        ACTIVITY_FINDER_PLUS.Label(
+            "ACTIVITY_FINDER_PLUS_DungeonCollection_" .. activityId,
             obj, {55, 20}, {LEFT, LEFT, 400, 0},
             "ZoFontGameLarge", nil, {2, 1}, collectionText
         )
     end
 
-    local cacheEntry = GROUP_SYNERGIZER.completionCache and GROUP_SYNERGIZER.completionCache[activityId]
+    local cacheEntry = ACTIVITY_FINDER_PLUS.completionCache and ACTIVITY_FINDER_PLUS.completionCache[activityId]
     if not cacheEntry then return end
 
-    GROUP_SYNERGIZER.Label(
-        "GROUP_SYNERGIZER_DungeonInfo_" .. activityId,
+    ACTIVITY_FINDER_PLUS.Label(
+        "ACTIVITY_FINDER_PLUS_DungeonInfo_" .. activityId,
         obj, {80, 20}, {LEFT, LEFT, 465, 0},
         "ZoFontGameLarge", nil, {0, 1}, BuildIconText(cacheEntry)
     )
 
-    local completed, daily = GetPledgeStatus(GROUP_SYNERGIZER.pledgeJournal, cacheEntry.pledgeName)
+    local completed, daily = GetPledgeStatus(ACTIVITY_FINDER_PLUS.pledgeJournal, cacheEntry.pledgeName)
     if obj.text then
-        GROUP_SYNERGIZER.Label(
-            "GROUP_SYNERGIZER_DungeonPledge_" .. activityId,
+        ACTIVITY_FINDER_PLUS.Label(
+            "ACTIVITY_FINDER_PLUS_DungeonPledge_" .. activityId,
             obj, {180, 20}, {LEFT, RIGHT, 5, -3, obj.text},
             "ZoFontGameLarge", nil, {0, 1}, BuildPledgeText(completed, daily)
         )
@@ -303,99 +248,261 @@ function GROUP_SYNERGIZER.DecorateDungeonRow(obj)
     obj.pledge = completed == false
 end
 
-function GROUP_SYNERGIZER.DecorateDungeonRows()
-    if not GROUP_SYNERGIZER.EnhanceGAF or isDecoratingRows then return end
+function ACTIVITY_FINDER_PLUS.DecorateDungeonRows()
+    if not ACTIVITY_FINDER_PLUS.EnhanceGAF or isDecoratingRows then return end
     isDecoratingRows = true
     for c = 2, 3 do
         local parent = _G["ZO_DungeonFinder_KeyboardListSectionScrollChildContainer" .. c]
         if parent then
             for i = 1, parent:GetNumChildren() do
-                GROUP_SYNERGIZER.DecorateDungeonRow(parent:GetChild(i))
+                ACTIVITY_FINDER_PLUS.DecorateDungeonRow(parent:GetChild(i))
             end
         end
     end
     isDecoratingRows = false
 end
 
-local function GetActiveDungeonSection()
-    return (GetUnitEffectiveChampionPoints("player") >= 160 and ZO_GetEffectiveDungeonDifficulty() == DUNGEON_DIFFICULTY_VETERAN) and 3 or 2
+local FINDER_BUTTON_WIDTH = 200
+local FINDER_BUTTON_HEIGHT = 28
+
+function ACTIVITY_FINDER_PLUS.IsVeteranModeSelected()
+    if IsInGamepadPreferredMode() then
+        return ACTIVITY_FINDER_PLUS.checkVeteran.sessionEnabled == true
+    end
+
+    local checkbox = ACTIVITY_FINDER_PLUS.checkVeteran.checkbox
+    return checkbox ~= nil and checkbox:GetState() == BSTATE_PRESSED
 end
 
-function GROUP_SYNERGIZER.ExpandDungeonListHeaders()
-    local activeSection = GetActiveDungeonSection()
+function ACTIVITY_FINDER_PLUS.SetVeteranModeEnabled(enabled)
+    ACTIVITY_FINDER_PLUS.checkVeteran.sessionEnabled = enabled == true
+
+    local checkbox = ACTIVITY_FINDER_PLUS.checkVeteran.checkbox
+    if checkbox then
+        checkbox:SetState(enabled and BSTATE_PRESSED or BSTATE_NORMAL, true)
+    end
+end
+
+local function GetTargetDungeonSection()
+    return ACTIVITY_FINDER_PLUS.IsVeteranModeSelected() and 3 or 2
+end
+
+local function GetFinderIndex()
+    return ACTIVITY_FINDER_PLUS.IsVeteranModeSelected() and ACTIVITY_FINDER_PLUS.FinderVeteranIndex or ACTIVITY_FINDER_PLUS.FinderNormalIndex
+end
+
+function ACTIVITY_FINDER_PLUS.CanUseQuickSelect()
+    if not ACTIVITY_FINDER_PLUS.EnhanceGAF then return false end
+    if IsUnitGrouped("player") and not IsUnitGroupLeader("player") then return false end
+    if ACTIVITY_FINDER_PLUS.coolDownStatus[LFG_COOLDOWN_ACTIVITY_STARTED] then return false end
+    if ZO_ACTIVITY_FINDER_ROOT_MANAGER and ZO_ACTIVITY_FINDER_ROOT_MANAGER:GetIsCurrentlyInQueue() then return false end
+    return true
+end
+
+function ACTIVITY_FINDER_PLUS.SelectMatchingDungeons(shouldSelect)
+    if not ACTIVITY_FINDER_PLUS.CanUseQuickSelect() then return end
+
+    local finderIndex = GetFinderIndex()
+    if not finderIndex then return end
+
+    local manager = ZO_ACTIVITY_FINDER_ROOT_MANAGER
+    if not manager then return end
+
+    local anySelected = false
+    for activityId, dungeon in pairs(finderIndex) do
+        if shouldSelect(activityId, dungeon) then
+            local ok, location = pcall(manager.GetSpecificLocation, manager, activityId)
+            if ok and location and not location:IsSelected() and not location:IsLocked() then
+                manager:SetLocationSelected(location, true)
+                anySelected = true
+            end
+        end
+    end
+
+    if not anySelected then return end
+
+    if DUNGEON_FINDER_KEYBOARD and ACTIVITY_FINDER_PLUS.showSpecificDung then
+        DUNGEON_FINDER_KEYBOARD:RefreshView()
+    end
+
+    local gamepadFinder = rawget(_G, "DUNGEON_FINDER_GAMEPAD")
+    if gamepadFinder and IsInGamepadPreferredMode() then
+        gamepadFinder:RefreshView()
+    end
+end
+
+function ACTIVITY_FINDER_PLUS.RunQuickSelectPledges()
+    local pledgesNow = ACTIVITY_FINDER_PLUS.GetGoalPledges()
+    if not pledgesNow then return end
+
+    ACTIVITY_FINDER_PLUS.SelectMatchingDungeons(function(_, dungeon)
+        return HasIncompletePledge(pledgesNow, GetQuestName(dungeon.pledgeId))
+    end)
+end
+
+function ACTIVITY_FINDER_PLUS.RunQuickSelectSets()
+    ACTIVITY_FINDER_PLUS.SelectMatchingDungeons(function(activityId)
+        local finderIndex = GetFinderIndex()
+        if not finderIndex or not finderIndex[activityId] then return false end
+        local entry = ACTIVITY_FINDER_PLUS.collectionCache and ACTIVITY_FINDER_PLUS.collectionCache[activityId]
+        return entry ~= nil and entry.unlocked < entry.total
+    end)
+end
+
+function ACTIVITY_FINDER_PLUS.RunQuickSelectSkillQuests()
+    ACTIVITY_FINDER_PLUS.SelectMatchingDungeons(function(_, dungeon)
+        return HasIncompleteSkillQuest(dungeon)
+    end)
+end
+
+local function ConfigureFinderActionButton(button, state, labelKey, onClick)
+    button:SetDimensions(FINDER_BUTTON_WIDTH, FINDER_BUTTON_HEIGHT)
+    button:SetText(ACTIVITY_FINDER_PLUS.Localization.Loc(labelKey))
+    button:SetClickSound("Click")
+    button:SetHandler("OnClicked", onClick)
+    button:SetState(state.state)
+    button:SetHidden(ACTIVITY_FINDER_PLUS.coolDownStatus[LFG_COOLDOWN_ACTIVITY_STARTED])
+    button:SetDrawTier(2)
+
+    if IsUnitGrouped("player") and not IsUnitGroupLeader("player") then
+        button:SetState(BSTATE_DISABLED)
+    end
+end
+
+local function CreateFinderActionButton(controlName, stateKey, labelKey, parentKeyboard, anchorTo, onClick)
+    local state = ACTIVITY_FINDER_PLUS[stateKey]
+    local button = _G[controlName] or WINDOW_MANAGER:CreateControlFromVirtual(controlName, parentKeyboard, "ZO_DefaultButton")
+    state.button = button
+
+    ConfigureFinderActionButton(button, state, labelKey, onClick)
+    button:ClearAnchors()
+    button:SetAnchor(anchorTo[1], anchorTo[2], anchorTo[3], anchorTo[4], anchorTo[5])
+    return button
+end
+
+local function ShowVeteranModeTooltip(show)
+    if show then
+        InitializeTooltip(InformationTooltip, ACTIVITY_FINDER_PLUS_VeteranCheck, TOPRIGHT, -8, 0, TOPLEFT)
+        SetTooltipText(InformationTooltip, ACTIVITY_FINDER_PLUS.Localization.Loc("VeteranModeTT"))
+    else
+        ClearTooltip(InformationTooltip)
+    end
+end
+
+local function CreateVeteranModeControls(parentKeyboard, pledgesButton)
+    local veteranState = ACTIVITY_FINDER_PLUS.checkVeteran
+    local label = veteranState.label or WINDOW_MANAGER:CreateControl("ACTIVITY_FINDER_PLUS_VeteranLabel", parentKeyboard, CT_LABEL)
+    veteranState.label = label
+    label:SetFont("ZoFontGame")
+    label:SetHorizontalAlignment(TEXT_ALIGN_LEFT)
+    label:SetText(ACTIVITY_FINDER_PLUS.Localization.Loc("VeteranMode"))
+    label:ClearAnchors()
+    label:SetAnchor(TOP, pledgesButton, BOTTOM, 0, 4)
+    label:SetHidden(false)
+    label:SetDrawTier(2)
+
+    local checkbox = veteranState.checkbox or WINDOW_MANAGER:CreateControlFromVirtual("ACTIVITY_FINDER_PLUS_VeteranCheck", parentKeyboard, "ZO_CheckButton")
+    veteranState.checkbox = checkbox
+    checkbox:ClearAnchors()
+    checkbox:SetAnchor(LEFT, label, RIGHT, 6, 0)
+    checkbox:SetDrawTier(2)
+    checkbox:SetHidden(false)
+    checkbox:SetState(BSTATE_NORMAL, false)
+    checkbox:SetHandler("OnMouseEnter", function() ShowVeteranModeTooltip(true) end)
+    checkbox:SetHandler("OnMouseExit", function() ShowVeteranModeTooltip(false) end)
+    checkbox:SetHandler("OnClicked", function(control)
+        local nowChecked = control:GetState() ~= BSTATE_PRESSED
+        ACTIVITY_FINDER_PLUS.SetVeteranModeEnabled(nowChecked)
+        ACTIVITY_FINDER_PLUS.ExpandDungeonListHeaders()
+    end)
+
+    return label, checkbox
+end
+
+function ACTIVITY_FINDER_PLUS.ExpandDungeonListHeaders()
+    local targetSection = GetTargetDungeonSection()
     for c = 2, 3 do
         local header = _G["ZO_DungeonFinder_KeyboardListSectionScrollChildZO_ActivityFinderTemplateNavigationHeader_Keyboard" .. c - 1]
-        if header and header.text and ((activeSection == c) ~= (header.text:GetColor() == 1)) then
+        if header and header.text and ((targetSection == c) ~= (header.text:GetColor() == 1)) then
             header:OnMouseUp(true)
         end
     end
 end
 
-function GROUP_SYNERGIZER.SetupDungeonFinderChrome()
-    if not GROUP_SYNERGIZER.EnhanceGAF then return end
-    local activeSection = GetActiveDungeonSection()
+function ACTIVITY_FINDER_PLUS.SetupDungeonFinderChrome()
+    if not ACTIVITY_FINDER_PLUS.EnhanceGAF then return end
+
     local parentKeyboard = ZO_DungeonFinder_Keyboard
     if not parentKeyboard then return end
 
-    GROUP_SYNERGIZER.OnCooldownsUpdate(EVENT_ACTIVITY_FINDER_COOLDOWNS_UPDATE)
+    ACTIVITY_FINDER_PLUS.OnCooldownsUpdate()
 
-    if activeSection == 2 or activeSection == 3 then
-        local btn = GROUP_SYNERGIZER_PledgesCheck or WINDOW_MANAGER:CreateControlFromVirtual("GROUP_SYNERGIZER_PledgesCheck", parentKeyboard, "ZO_DefaultButton")
-        GROUP_SYNERGIZER.checkPledges.button = btn
-        btn:SetWidth(200, 28)
-        btn:SetText(GROUP_SYNERGIZER.Localization.Loc("CheckQuests"))
-        btn:SetClickSound("Click")
-        btn:SetHandler("OnClicked", function()
-            local pledgesNow = GROUP_SYNERGIZER.GetGoalPledges()
-            if not pledgesNow then return end
-            local parent = _G["ZO_DungeonFinder_KeyboardListSectionScrollChildContainer" .. activeSection]
-            if not parent then return end
-            for i = 1, parent:GetNumChildren() do
-                local obj = parent:GetChild(i)
-                if obj and obj.check and obj.node and obj.node.data and obj.check:GetState() == 0 then
-                    local id = obj.node.data.id
-                    local mode = obj.node.data.levelMin >= 50 and "vet" or "normal"
-                    local dungeon = FindDungeonByActivityId(id, mode)
-                    if dungeon then
-                        local pledgeName = GetQuestName(dungeon.pledge)
-                        if HasIncompletePledge(pledgesNow, pledgeName) then
-                            obj.check:SetState(BSTATE_PRESSED, true)
-                            ZO_ACTIVITY_FINDER_ROOT_MANAGER:ToggleLocationSelected(obj.node.data)
-                        end
-                    end
-                end
+    local pledgesButton = CreateFinderActionButton(
+        "ACTIVITY_FINDER_PLUS_PledgesCheck",
+        "checkPledges",
+        "CheckQuests",
+        parentKeyboard,
+        { BOTTOM, parentKeyboard, BOTTOM, 200, 0 },
+        function()
+            ACTIVITY_FINDER_PLUS.RunQuickSelectPledges()
+        end
+    )
+
+    CreateVeteranModeControls(parentKeyboard, pledgesButton)
+
+    local stackAnchor = pledgesButton
+
+    if ACTIVITY_FINDER_PLUS.libSetsAvailable then
+        stackAnchor = CreateFinderActionButton(
+            "ACTIVITY_FINDER_PLUS_SetsCheck",
+            "checkSets",
+            "CheckSets",
+            parentKeyboard,
+            { BOTTOM, pledgesButton, TOP, 0, -4 },
+            function()
+                ACTIVITY_FINDER_PLUS.RunQuickSelectSets()
             end
-        end)
-        btn:SetState(GROUP_SYNERGIZER.checkPledges.state)
-        btn:SetHidden(GROUP_SYNERGIZER.coolDownStatus[LFG_COOLDOWN_ACTIVITY_STARTED])
-        if GROUP_SYNERGIZER.perfectPixelCompat then
-            btn:SetAnchor(BOTTOM, parentKeyboard, BOTTOM, 200, 0)
-            ZO_SearchingForGroupStatus:ClearAnchors()
-            ZO_SearchingForGroupStatus:SetAnchor(BOTTOM, parentKeyboard, BOTTOM, 0, -114)
-            ZO_SearchingForGroupStatus:SetDrawTier(2)
-        else
-            btn:ClearAnchors()
-            btn:SetAnchor(BOTTOM, parentKeyboard, BOTTOM, 200)
-            btn:SetDrawTier(2)
-        end
-        if IsUnitGrouped("player") and not IsUnitGroupLeader("player") then
-            btn:SetState(BSTATE_DISABLED)
-        end
+        )
     end
 
-    if not GROUP_SYNERGIZER.perfectPixelCompat and ZO_DungeonFinder_KeyboardQueueButton then
+    local skillQuestButton = CreateFinderActionButton(
+        "ACTIVITY_FINDER_PLUS_SkillQuestCheck",
+        "checkSkillQuests",
+        "CheckSkillQuests",
+        parentKeyboard,
+        { BOTTOM, stackAnchor, TOP, 0, -4 },
+        function()
+            ACTIVITY_FINDER_PLUS.RunQuickSelectSkillQuests()
+        end
+    )
+    skillQuestButton:SetHandler("OnMouseEnter", function()
+        InitializeTooltip(InformationTooltip, skillQuestButton, TOPRIGHT, -8, 0, TOPLEFT)
+        SetTooltipText(InformationTooltip, ACTIVITY_FINDER_PLUS.Localization.Loc("CheckSkillQuestsTT"))
+    end)
+    skillQuestButton:SetHandler("OnMouseExit", function()
+        ClearTooltip(InformationTooltip)
+    end)
+    RefreshSkillQuestButtonState()
+
+    if ACTIVITY_FINDER_PLUS.perfectPixelCompat then
+        ZO_SearchingForGroupStatus:ClearAnchors()
+        ZO_SearchingForGroupStatus:SetAnchor(BOTTOM, parentKeyboard, BOTTOM, 0, -114)
+        ZO_SearchingForGroupStatus:SetDrawTier(2)
+    end
+
+    if not ACTIVITY_FINDER_PLUS.perfectPixelCompat and ZO_DungeonFinder_KeyboardQueueButton then
         ZO_DungeonFinder_KeyboardQueueButton:ClearAnchors()
         ZO_DungeonFinder_KeyboardQueueButton:SetAnchor(BOTTOM, parentKeyboard, BOTTOM, -parentKeyboard:GetWidth() / 5, 0)
         ZO_DungeonFinder_KeyboardQueueButton:SetDrawTier(2)
     end
 
-    GROUP_SYNERGIZER.ExpandDungeonListHeaders()
+    ACTIVITY_FINDER_PLUS.ExpandDungeonListHeaders()
 end
 
 local function OnDungeonListRefresh()
-    if not GROUP_SYNERGIZER.EnhanceGAF or not GROUP_SYNERGIZER.showSpecificDung then return end
+    if not ACTIVITY_FINDER_PLUS.EnhanceGAF or not ACTIVITY_FINDER_PLUS.showSpecificDung then return end
     if ZO_DungeonFinder_KeyboardListSection and not ZO_DungeonFinder_KeyboardListSection:IsHidden() then
-        GROUP_SYNERGIZER.DecorateDungeonRows()
+        ACTIVITY_FINDER_PLUS.DecorateDungeonRows()
     end
 end
 
@@ -404,7 +511,8 @@ local function SchedulePledgeJournalRefresh()
     pledgeJournalRefreshPending = true
     zo_callLater(function()
         pledgeJournalRefreshPending = false
-        GROUP_SYNERGIZER.RefreshPledgeJournal()
+        ACTIVITY_FINDER_PLUS.RefreshPledgeJournal()
+        RefreshSkillQuestButtonState()
         OnDungeonListRefresh()
     end, 100)
 end
@@ -413,18 +521,18 @@ local function RegisterCacheEvents()
     if cacheEventsRegistered then return end
     cacheEventsRegistered = true
 
-    local em = GROUP_SYNERGIZER.eventManager
-    local prefix = GROUP_SYNERGIZER.name .. "_PledgeCache"
+    local em = ACTIVITY_FINDER_PLUS.eventManager
+    local prefix = ACTIVITY_FINDER_PLUS.name .. "_PledgeCache"
 
     em:RegisterForEvent(prefix .. "_PlayerActivated", EVENT_PLAYER_ACTIVATED, function()
-        GROUP_SYNERGIZER.BuildCompletionCache()
-        GROUP_SYNERGIZER.BuildCollectionCache()
-        GROUP_SYNERGIZER.RefreshDailyPledges()
-        GROUP_SYNERGIZER.RefreshPledgeJournal()
+        ACTIVITY_FINDER_PLUS.BuildCompletionCache()
+        ACTIVITY_FINDER_PLUS.BuildCollectionCache()
+        ACTIVITY_FINDER_PLUS.RefreshDailyPledges()
+        ACTIVITY_FINDER_PLUS.RefreshPledgeJournal()
     end)
 
     em:RegisterForEvent(prefix .. "_Achievement", EVENT_ACHIEVEMENT_AWARDED, function()
-        GROUP_SYNERGIZER.BuildCompletionCache()
+        ACTIVITY_FINDER_PLUS.BuildCompletionCache()
         OnDungeonListRefresh()
     end)
 
@@ -438,10 +546,10 @@ local function RegisterCollectionEvents()
     if collectionEventsRegistered or not IsLibSetsAvailable() then return end
     collectionEventsRegistered = true
 
-    local em = GROUP_SYNERGIZER.eventManager
-    local prefix = GROUP_SYNERGIZER.name .. "_SetCollection"
+    local em = ACTIVITY_FINDER_PLUS.eventManager
+    local prefix = ACTIVITY_FINDER_PLUS.name .. "_SetCollection"
     local function OnCollectionChanged()
-        GROUP_SYNERGIZER.BuildCollectionCache()
+        ACTIVITY_FINDER_PLUS.BuildCollectionCache()
         OnDungeonListRefresh()
     end
 
@@ -451,15 +559,16 @@ end
 
 local function InitCachesIfReady()
     if not DoesUnitExist("player") then return end
-    GROUP_SYNERGIZER.BuildCompletionCache()
-    GROUP_SYNERGIZER.BuildCollectionCache()
-    GROUP_SYNERGIZER.RefreshDailyPledges()
-    GROUP_SYNERGIZER.RefreshPledgeJournal()
+    ACTIVITY_FINDER_PLUS.BuildCompletionCache()
+    ACTIVITY_FINDER_PLUS.BuildCollectionCache()
+    ACTIVITY_FINDER_PLUS.RefreshDailyPledges()
+    ACTIVITY_FINDER_PLUS.RefreshPledgeJournal()
 end
 
-function GROUP_SYNERGIZER.Pledges()
-    GROUP_SYNERGIZER.libSetsAvailable = IsLibSetsAvailable()
-    if GROUP_SYNERGIZER.libSetsAvailable then
+function ACTIVITY_FINDER_PLUS.InitializePledges()
+    ACTIVITY_FINDER_PLUS.BuildDungeonIndices()
+    ACTIVITY_FINDER_PLUS.libSetsAvailable = IsLibSetsAvailable()
+    if ACTIVITY_FINDER_PLUS.libSetsAvailable then
         BuildActivityIdToZoneIdMap()
         RegisterCollectionEvents()
     end
@@ -467,13 +576,14 @@ function GROUP_SYNERGIZER.Pledges()
     InitCachesIfReady()
 
     local function OnDungeonListShown()
-        GROUP_SYNERGIZER.OnCooldownsUpdate(EVENT_ACTIVITY_FINDER_COOLDOWNS_UPDATE)
-        GROUP_SYNERGIZER.RefreshDailyPledges()
-        GROUP_SYNERGIZER.RefreshPledgeJournal()
-        GROUP_SYNERGIZER.BuildCollectionCache()
-        GROUP_SYNERGIZER.showSpecificDung = true
-        GROUP_SYNERGIZER.SetupDungeonFinderChrome()
-        GROUP_SYNERGIZER.DecorateDungeonRows()
+        ACTIVITY_FINDER_PLUS.OnCooldownsUpdate()
+        ACTIVITY_FINDER_PLUS.RefreshDailyPledges()
+        ACTIVITY_FINDER_PLUS.RefreshPledgeJournal()
+        ACTIVITY_FINDER_PLUS.BuildCollectionCache()
+        ACTIVITY_FINDER_PLUS.showSpecificDung = true
+        ACTIVITY_FINDER_PLUS.SetVeteranModeEnabled(false)
+        ACTIVITY_FINDER_PLUS.SetupDungeonFinderChrome()
+        ACTIVITY_FINDER_PLUS.DecorateDungeonRows()
         -- Tree rows may appear one frame after header expand.
         zo_callLater(OnDungeonListRefresh, 0)
     end
@@ -482,13 +592,17 @@ function GROUP_SYNERGIZER.Pledges()
     ZO_PreHookHandler(ZO_DungeonFinder_KeyboardListSection, "OnEffectivelyShown", OnDungeonListShown)
 
     ZO_PreHookHandler(ZO_DungeonFinder_KeyboardListSection, "OnEffectivelyHidden", function()
-        if GROUP_SYNERGIZER.perfectPixelCompat and not GROUP_SYNERGIZER.showSpecificDung then
+        if ACTIVITY_FINDER_PLUS.perfectPixelCompat and ZO_DungeonFinder_Keyboard then
             ZO_SearchingForGroupStatus:ClearAnchors()
-            ZO_SearchingForGroupStatus:SetAnchor(BOTTOM, parent, BOTTOM, -474, -33)
+            ZO_SearchingForGroupStatus:SetAnchor(BOTTOM, ZO_DungeonFinder_Keyboard, BOTTOM, -474, -33)
             ZO_SearchingForGroupStatus:SetDrawTier(2)
         end
-        if GROUP_SYNERGIZER_PledgesCheck then GROUP_SYNERGIZER_PledgesCheck:SetHidden(true) end
-        GROUP_SYNERGIZER.showSpecificDung = false
+        if ACTIVITY_FINDER_PLUS_PledgesCheck then ACTIVITY_FINDER_PLUS_PledgesCheck:SetHidden(true) end
+        if ACTIVITY_FINDER_PLUS_SetsCheck then ACTIVITY_FINDER_PLUS_SetsCheck:SetHidden(true) end
+        if ACTIVITY_FINDER_PLUS_SkillQuestCheck then ACTIVITY_FINDER_PLUS_SkillQuestCheck:SetHidden(true) end
+        if ACTIVITY_FINDER_PLUS_VeteranLabel then ACTIVITY_FINDER_PLUS_VeteranLabel:SetHidden(true) end
+        if ACTIVITY_FINDER_PLUS_VeteranCheck then ACTIVITY_FINDER_PLUS_VeteranCheck:SetHidden(true) end
+        ACTIVITY_FINDER_PLUS.showSpecificDung = false
     end)
 
     ZO_PostHook(ZO_ActivityFinderTemplate_Keyboard, "RefreshView", function(self)
@@ -497,15 +611,16 @@ function GROUP_SYNERGIZER.Pledges()
     end)
 
     ZO_PostHook(ZO_ActivityFinderTemplate_Keyboard, "OnFilterChanged", function()
-        if GROUP_SYNERGIZER.showSpecificDung then
+        if ACTIVITY_FINDER_PLUS.showSpecificDung then
             zo_callLater(OnDungeonListRefresh, 0)
         end
     end)
+
 end
 
-function GROUP_SYNERGIZER.DailyPledges()
-    local pledges = GROUP_SYNERGIZER.GetGoalPledges()
-    df("|t16:16:ESOUI/art/icons/ability_weapon_001.dds|t |cffffff%s", GROUP_SYNERGIZER.Localization.Loc("PledgeSlash"))
+function ACTIVITY_FINDER_PLUS.DailyPledges()
+    local pledges = ACTIVITY_FINDER_PLUS.GetGoalPledges()
+    df("|t16:16:ESOUI/art/icons/ability_weapon_001.dds|t |cffffff%s", ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeSlash"))
     local lupPledges = LibUndauntedPledges.GetPledges()
     local pledgeGivers = { LibUndauntedPledges.BASE1, LibUndauntedPledges.BASE2, LibUndauntedPledges.DLC1 }
     for npcIndex, giverId in ipairs(pledgeGivers) do
@@ -518,11 +633,11 @@ function GROUP_SYNERGIZER.DailyPledges()
         if pledgeName and pledges then
             local completed = GetPledgeStatus(pledges, pledgeName)
             if completed ~= nil then
-                quest = completed and "|cffffff["..GROUP_SYNERGIZER.Localization.Loc("PledgeDone").."]|r"
-                    or "|c00ffff["..GROUP_SYNERGIZER.Localization.Loc("PledgeQuest").."]|r"
+                quest = completed and "|cffffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeDone").."]|r"
+                    or "|c00ffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeQuest").."]|r"
             end
         end
-        local npcname = GROUP_SYNERGIZER.Localization.Loc("PledgeNPC")[npcIndex]
+        local npcname = ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeNPC")[npcIndex]
         if not pledgeName or pledgeName == "" then
             pledgeName = "?"
         end
@@ -534,11 +649,11 @@ function GROUP_SYNERGIZER.DailyPledges()
     end
 end
 
-function GROUP_SYNERGIZER.GetGoalPledges()
-    if not GROUP_SYNERGIZER.EnhanceGAF then return end
+function ACTIVITY_FINDER_PLUS.GetGoalPledges()
+    if not ACTIVITY_FINDER_PLUS.EnhanceGAF then return end
 
     local pledgeData = {}
-    local dailyNames = GROUP_SYNERGIZER.dailyPledgeNames or GetTodayDailyPledgeNames()
+    local dailyNames = ACTIVITY_FINDER_PLUS.dailyPledgeNames or GetTodayDailyPledgeNames()
 
     for i = 1, MAX_JOURNAL_QUESTS do
         local questName, _, _, stepType, _, _, _, _, _, questType, instanceDisplayType = GetJournalQuestInfo(i)
