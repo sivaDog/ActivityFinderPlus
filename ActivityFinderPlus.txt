@@ -22,6 +22,8 @@
 lang/en.lua
 lang/$(language).lua
 
+Bindings.xml
+
 ActivityFinderPlusVars.lua
 ActivityFinderPlusDungeonData.lua
 ActivityFinderPlusSettings.lua
@@ -29,4 +31,5 @@ ActivityFinderPlusFunctions.lua
 ActivityFinderPlusActivityFinder.lua
 ActivityFinderPlusBattlegrounds.lua
 ActivityFinderPlusPledges.lua
+ActivityFinderPlusPledgesGamepad.lua
 ActivityFinderPlus.lua

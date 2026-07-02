@@ -616,6 +616,7 @@ function ACTIVITY_FINDER_PLUS.InitializePledges()
         end
     end)
 
+    ACTIVITY_FINDER_PLUS.InitializePledgesGamepad()
 end
 
 function ACTIVITY_FINDER_PLUS.DailyPledges()

@@ -113,6 +113,7 @@ function ACTIVITY_FINDER_PLUS.OnActivityFinderStatusUpdate(_, statusCode)
 
     ACTIVITY_FINDER_PLUS.activityFinderCode = statusCode
     RefreshActivityFinderChrome(statusCode)
+    ACTIVITY_FINDER_PLUS.RefreshGamepadQuickSelectKeybind()
 
     if statusCode ~= ACTIVITY_FINDER_STATUS_READY_CHECK or not HasLFGReadyCheckNotification() then
         StopReadyCheckNotifications()
