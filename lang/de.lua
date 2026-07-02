@@ -28,36 +28,29 @@
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Slash-Befehle:\nEinstellungen  /afp\nTägliche Gelöbnisse  /pl  /pledge\nGruppe verlassen  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Sekunden zwischen wiederholten Tonbenachrichtigungen während einer Bereitschaftsprüfung.",
 
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DAILY    = "Gelöbnis",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_QUEST    = "Quest",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DONE     = "Erledigt",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_SLASH    = "TÄGLICHE GELÖBNISSE",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC1     = "Maj al-Ragath",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC2     = "Glirion der Rotbart",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC3     = "Urgarlag Häuptlingsfluch",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_QUESTS    = "Aktive Quests prüfen",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SETS      = "Unvollständige Sets prüfen",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS = "Unvollständige Quests wählen",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS_TT = "Wählt Dungeons aus, deren Skillpunkt-Quest der aktuelle Charakter noch nicht abgeschlossen hat.",
+    SI_ACTIVITY_FINDER_PLUS_QUICK_SELECT    = "Schnellauswahl",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_LABEL = "Veteranenmodus",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE    = "Veteranenmodus:",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_TT = "Wenn aktiviert, zielen die Schnellauswahl-Schaltflächen auf Veteranen-Dungeons statt auf normale.",
+    SI_ACTIVITY_FINDER_PLUS_ACHIEVEMENTS_HEADER = "Veteranen-Herausforderungen",
+    SI_ACTIVITY_FINDER_PLUS_VET_CLEAR       = "Veteran abgeschlossen",
+    SI_ACTIVITY_FINDER_PLUS_NORMAL_CLEAR    = "Normal abgeschlossen",
+
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Schnellauswahl",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Aktivitätensuche",
 }
 
 for stringId, stringValue in pairs(strings) do
-    ZO_CreateStringId(stringId, stringValue)
-    SafeAddVersion(stringId, 1)
+    SafeAddString(_G[stringId], stringValue, 2)
 end
-
-
-ACTIVITY_FINDER_PLUS_STRINGS = {
-    PledgeNPC   = {
-        "Maj al-Ragath",
-        "Glirion der Rotbart",
-        "Urgarlag Häuptlingsfluch",
-    },
-    PledgeDaily = "Gelöbnis",
-    PledgeQuest = "Quest",
-    PledgeDone  = "Erledigt",
-    PledgeSlash = "TÄGLICHE GELÖBNISSE",
-    CheckQuests = "Aktive Quests prüfen",
-    CheckSets   = "Unvollständige Sets prüfen",
-    CheckSkillQuests = "Unvollständige Quests wählen",
-    CheckSkillQuestsTT = "Wählt Dungeons aus, deren Skillpunkt-Quest der aktuelle Charakter noch nicht abgeschlossen hat.",
-    QuickSelect = "Schnellauswahl",
-    QuickSelectTT = "Unter Einstellungen > Steuerung > Aktivitätensuche zuweisen (nur im Dungeon-Finder aktiv). Kampftasten kollidieren nicht mit Fähigkeiten. Oder /afpqs.",
-    VeteranModeLabel = "Veteranenmodus",
-    VeteranMode = "Veteranenmodus:",
-    VeteranModeTT = "Wenn aktiviert, zielen die Schnellauswahl-Schaltflächen auf Veteranen-Dungeons statt auf normale.",
-    GamepadAchievementsHeader = "Veteranen-Herausforderungen",
-    GamepadClearLabel = "Veteran abgeschlossen",
-    GamepadNormalClearLabel = "Normal abgeschlossen",
-}

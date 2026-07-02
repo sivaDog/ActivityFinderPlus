@@ -1,5 +1,10 @@
 local DungeonData = ACTIVITY_FINDER_PLUS.DungeonData
-local Loc = ACTIVITY_FINDER_PLUS.Localization.Loc
+
+local PLEDGE_NPC_STRING_IDS = {
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC1,
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC2,
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC3,
+}
 
 local ICON_QUEST_DONE = "|t16:16:/esoui/art/cadwell/check.dds|t"
 local ICON_HARDMODE = "|t20:20:/esoui/art/unitframes/target_veteranrank_icon.dds|t"
@@ -128,11 +133,11 @@ end
 
 local function BuildPledgeText(completed, daily)
     if daily == nil then return "" end
-    local dailyText = daily and (" ["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeDaily").."]") or ""
+    local dailyText = daily and (" ["..GetString(SI_ACTIVITY_FINDER_PLUS_PLEDGE_DAILY).."]") or ""
     if completed == false then
-        return "|cb7ff00 "..dailyText.."|r |c00ffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeQuest").."]|r"
+        return "|cb7ff00 "..dailyText.."|r |c00ffff["..GetString(SI_ACTIVITY_FINDER_PLUS_PLEDGE_QUEST).."]|r"
     elseif completed == true then
-        return "|cb7ff00 "..dailyText.."|r |cffffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeDone").."]|r"
+        return "|cb7ff00 "..dailyText.."|r |cffffff["..GetString(SI_ACTIVITY_FINDER_PLUS_PLEDGE_DONE).."]|r"
     elseif daily then
         return " |cb7ff00"..dailyText.."|r"
     end
@@ -194,7 +199,7 @@ function ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
     local cacheEntry = ACTIVITY_FINDER_PLUS.completionCache and ACTIVITY_FINDER_PLUS.completionCache[modeData.id]
 
     if mode == "vet" then
-        local header = "|cffcc66" .. Loc("GamepadAchievementsHeader") .. "|r"
+        local header = "|cffcc66" .. GetString(SI_ACTIVITY_FINDER_PLUS_ACHIEVEMENTS_HEADER) .. "|r"
         if modeData.tt then
             header = header .. " " .. BuildAchievementMark(IsAchievementComplete(modeData.tt))
         end
@@ -215,7 +220,7 @@ function ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
         -- current character's own pledge/skill quest completion instead.
         table.insert(lines, BuildAchievementLine(
             cacheEntry ~= nil and cacheEntry.questDone == true,
-            Loc(mode == "vet" and "GamepadClearLabel" or "GamepadNormalClearLabel")))
+            GetString(mode == "vet" and SI_ACTIVITY_FINDER_PLUS_VET_CLEAR or SI_ACTIVITY_FINDER_PLUS_NORMAL_CLEAR)))
     end
 
     if mode == "vet" then
@@ -446,9 +451,9 @@ function ACTIVITY_FINDER_PLUS.RunQuickSelectSkillQuests()
     end)
 end
 
-local function ConfigureFinderActionButton(button, state, labelKey, onClick)
+local function ConfigureFinderActionButton(button, state, labelStringId, onClick)
     button:SetDimensions(FINDER_BUTTON_WIDTH, FINDER_BUTTON_HEIGHT)
-    button:SetText(ACTIVITY_FINDER_PLUS.Localization.Loc(labelKey))
+    button:SetText(GetString(labelStringId))
     button:SetClickSound("Click")
     button:SetHandler("OnClicked", onClick)
     button:SetState(state.state)
@@ -460,12 +465,12 @@ local function ConfigureFinderActionButton(button, state, labelKey, onClick)
     end
 end
 
-local function CreateFinderActionButton(controlName, stateKey, labelKey, parentKeyboard, anchorTo, onClick)
+local function CreateFinderActionButton(controlName, stateKey, labelStringId, parentKeyboard, anchorTo, onClick)
     local state = ACTIVITY_FINDER_PLUS[stateKey]
     local button = _G[controlName] or WINDOW_MANAGER:CreateControlFromVirtual(controlName, parentKeyboard, "ZO_DefaultButton")
     state.button = button
 
-    ConfigureFinderActionButton(button, state, labelKey, onClick)
+    ConfigureFinderActionButton(button, state, labelStringId, onClick)
     button:ClearAnchors()
     button:SetAnchor(anchorTo[1], anchorTo[2], anchorTo[3], anchorTo[4], anchorTo[5])
     return button
@@ -474,7 +479,7 @@ end
 local function ShowVeteranModeTooltip(show)
     if show then
         InitializeTooltip(InformationTooltip, ACTIVITY_FINDER_PLUS_VeteranCheck, TOPRIGHT, -8, 0, TOPLEFT)
-        SetTooltipText(InformationTooltip, ACTIVITY_FINDER_PLUS.Localization.Loc("VeteranModeTT"))
+        SetTooltipText(InformationTooltip, GetString(SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_TT))
     else
         ClearTooltip(InformationTooltip)
     end
@@ -486,7 +491,7 @@ local function CreateVeteranModeControls(parentKeyboard, pledgesButton)
     veteranState.label = label
     label:SetFont("ZoFontGame")
     label:SetHorizontalAlignment(TEXT_ALIGN_LEFT)
-    label:SetText(ACTIVITY_FINDER_PLUS.Localization.Loc("VeteranMode"))
+    label:SetText(GetString(SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE))
     label:ClearAnchors()
     label:SetAnchor(TOP, pledgesButton, BOTTOM, 0, 4)
     label:SetHidden(false)
@@ -531,7 +536,7 @@ function ACTIVITY_FINDER_PLUS.SetupDungeonFinderChrome()
     local pledgesButton = CreateFinderActionButton(
         "ACTIVITY_FINDER_PLUS_PledgesCheck",
         "checkPledges",
-        "CheckQuests",
+        SI_ACTIVITY_FINDER_PLUS_CHECK_QUESTS,
         parentKeyboard,
         { BOTTOM, parentKeyboard, BOTTOM, 200, 0 },
         function()
@@ -547,7 +552,7 @@ function ACTIVITY_FINDER_PLUS.SetupDungeonFinderChrome()
         stackAnchor = CreateFinderActionButton(
             "ACTIVITY_FINDER_PLUS_SetsCheck",
             "checkSets",
-            "CheckSets",
+            SI_ACTIVITY_FINDER_PLUS_CHECK_SETS,
             parentKeyboard,
             { BOTTOM, pledgesButton, TOP, 0, -4 },
             function()
@@ -559,7 +564,7 @@ function ACTIVITY_FINDER_PLUS.SetupDungeonFinderChrome()
     local skillQuestButton = CreateFinderActionButton(
         "ACTIVITY_FINDER_PLUS_SkillQuestCheck",
         "checkSkillQuests",
-        "CheckSkillQuests",
+        SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS,
         parentKeyboard,
         { BOTTOM, stackAnchor, TOP, 0, -4 },
         function()
@@ -568,7 +573,7 @@ function ACTIVITY_FINDER_PLUS.SetupDungeonFinderChrome()
     )
     skillQuestButton:SetHandler("OnMouseEnter", function()
         InitializeTooltip(InformationTooltip, skillQuestButton, TOPRIGHT, -8, 0, TOPLEFT)
-        SetTooltipText(InformationTooltip, ACTIVITY_FINDER_PLUS.Localization.Loc("CheckSkillQuestsTT"))
+        SetTooltipText(InformationTooltip, GetString(SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS_TT))
     end)
     skillQuestButton:SetHandler("OnMouseExit", function()
         ClearTooltip(InformationTooltip)
@@ -841,7 +846,7 @@ end
 
 function ACTIVITY_FINDER_PLUS.DailyPledges()
     local pledges = ACTIVITY_FINDER_PLUS.GetGoalPledges()
-    df("|t16:16:ESOUI/art/icons/ability_weapon_001.dds|t |cffffff%s", ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeSlash"))
+    df("|t16:16:ESOUI/art/icons/ability_weapon_001.dds|t |cffffff%s", GetString(SI_ACTIVITY_FINDER_PLUS_PLEDGE_SLASH))
     local lupPledges = LibUndauntedPledges.GetPledges()
     local pledgeGivers = { LibUndauntedPledges.BASE1, LibUndauntedPledges.BASE2, LibUndauntedPledges.DLC1 }
     for npcIndex, giverId in ipairs(pledgeGivers) do
@@ -854,11 +859,11 @@ function ACTIVITY_FINDER_PLUS.DailyPledges()
         if pledgeName and pledges then
             local completed = GetPledgeStatus(pledges, pledgeName)
             if completed ~= nil then
-                quest = completed and "|cffffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeDone").."]|r"
-                    or "|c00ffff["..ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeQuest").."]|r"
+                quest = completed and "|cffffff["..GetString(SI_ACTIVITY_FINDER_PLUS_PLEDGE_DONE).."]|r"
+                    or "|c00ffff["..GetString(SI_ACTIVITY_FINDER_PLUS_PLEDGE_QUEST).."]|r"
             end
         end
-        local npcname = ACTIVITY_FINDER_PLUS.Localization.Loc("PledgeNPC")[npcIndex]
+        local npcname = GetString(PLEDGE_NPC_STRING_IDS[npcIndex])
         if not pledgeName or pledgeName == "" then
             pledgeName = "?"
         end

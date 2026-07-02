@@ -28,36 +28,29 @@ local strings = {
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Commandes textuelles :\nParamètres  /afp\nSerments journaliers  /pl  /pledge\nQuitter le groupe  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Secondes entre les notifications sonores répétées pendant une vérification de préparation.",
 
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DAILY    = "Serment",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_QUEST    = "Quête",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DONE     = "Fait",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_SLASH    = "SERMENTS JOURNALIERS",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC1     = "Maj al-Ragath",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC2     = "Glirion Barbe-Rousse",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC3     = "Urgarlag l'Émasculatrice",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_QUESTS    = "Vérifier les quêtes actives",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SETS      = "Vérifier les ensembles incomplets",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS = "Sélectionner les quêtes incomplètes",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS_TT = "Sélectionne les donjons dont le personnage actuel n'a pas encore terminé la quête de point de compétence.",
+    SI_ACTIVITY_FINDER_PLUS_QUICK_SELECT    = "Sélection rapide",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_LABEL = "Mode vétéran",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE    = "Mode vétéran :",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_TT = "Si coché, les boutons de sélection rapide ciblent les donjons vétéran au lieu des donjons normaux.",
+    SI_ACTIVITY_FINDER_PLUS_ACHIEVEMENTS_HEADER = "Défis vétéran",
+    SI_ACTIVITY_FINDER_PLUS_VET_CLEAR       = "Terminé en vétéran",
+    SI_ACTIVITY_FINDER_PLUS_NORMAL_CLEAR    = "Terminé en normal",
+
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Sélection rapide",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Chercheur d'activités",
 }
 
 for stringId, stringValue in pairs(strings) do
-    ZO_CreateStringId(stringId, stringValue)
-    SafeAddVersion(stringId, 1)
+    SafeAddString(_G[stringId], stringValue, 2)
 end
-
-
-ACTIVITY_FINDER_PLUS_STRINGS = {
-    PledgeNPC   = {
-        "Maj al-Ragath",
-        "Glirion Barbe-Rousse",
-        "Urgarlag l'Émasculatrice",
-    },
-    PledgeDaily = "Serment",
-    PledgeQuest = "Quête",
-    PledgeDone  = "Fait",
-    PledgeSlash = "SERMENTS JOURNALIERS",
-    CheckQuests = "Vérifier les quêtes actives",
-    CheckSets   = "Vérifier les ensembles incomplets",
-    CheckSkillQuests = "Sélectionner les quêtes incomplètes",
-    CheckSkillQuestsTT = "Sélectionne les donjons dont le personnage actuel n'a pas encore terminé la quête de point de compétence.",
-    QuickSelect = "Sélection rapide",
-    QuickSelectTT = "Assignez dans Paramètres > Commandes > Chercheur d'activités (actif uniquement dans le chercheur de donjon). Les boutons de combat n'entrent pas en conflit. Ou /afpqs.",
-    VeteranModeLabel = "Mode vétéran",
-    VeteranMode = "Mode vétéran :",
-    VeteranModeTT = "Si coché, les boutons de sélection rapide ciblent les donjons vétéran au lieu des donjons normaux.",
-    GamepadAchievementsHeader = "Défis vétéran",
-    GamepadClearLabel = "Terminé en vétéran",
-    GamepadNormalClearLabel = "Terminé en normal",
-}

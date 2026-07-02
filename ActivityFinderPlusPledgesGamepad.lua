@@ -16,10 +16,6 @@ local isResettingKeybinds = false
 
 local PRIMARY_BINDING_INDEX = 1
 
-local function Loc(key)
-    return ACTIVITY_FINDER_PLUS.Localization.Loc(key)
-end
-
 function ACTIVITY_FINDER_PLUS_ShowGamepadQuickSelectDialog()
     ACTIVITY_FINDER_PLUS.ShowGamepadQuickSelectDialog()
 end
@@ -230,8 +226,8 @@ local function BuildCheckboxEntry(labelText, initialChecked, onToggled)
     }
 end
 
-local function BuildActionEntry(labelKey, callback, isEnabled)
-    local entryData = ZO_GamepadEntryData:New(Loc(labelKey))
+local function BuildActionEntry(labelStringId, callback, isEnabled)
+    local entryData = ZO_GamepadEntryData:New(GetString(labelStringId))
     entryData.isEnabledFn = isEnabled
 
     local function setupFunction(control, data, selected, reselectingDuringRebuild, enabled, active)
@@ -266,23 +262,23 @@ local function BuildQuickSelectParametricList()
     local veteranState = ACTIVITY_FINDER_PLUS.checkVeteran
 
     table.insert(parametricList, BuildCheckboxEntry(
-        Loc("VeteranModeLabel"),
+        GetString(SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_LABEL),
         veteranState.sessionEnabled == true,
         function(checked)
             ACTIVITY_FINDER_PLUS.SetVeteranModeEnabled(checked)
         end))
 
-    table.insert(parametricList, BuildActionEntry("CheckQuests", function()
+    table.insert(parametricList, BuildActionEntry(SI_ACTIVITY_FINDER_PLUS_CHECK_QUESTS, function()
         ACTIVITY_FINDER_PLUS.RunQuickSelectPledges()
     end))
 
     if ACTIVITY_FINDER_PLUS.libSetsAvailable then
-        table.insert(parametricList, BuildActionEntry("CheckSets", function()
+        table.insert(parametricList, BuildActionEntry(SI_ACTIVITY_FINDER_PLUS_CHECK_SETS, function()
             ACTIVITY_FINDER_PLUS.RunQuickSelectSets()
         end))
     end
 
-    table.insert(parametricList, BuildActionEntry("CheckSkillQuests", function()
+    table.insert(parametricList, BuildActionEntry(SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS, function()
         ACTIVITY_FINDER_PLUS.RunQuickSelectSkillQuests()
     end, function()
         return ACTIVITY_FINDER_PLUS.HasAnyIncompleteSkillQuest()
@@ -301,7 +297,7 @@ local function RegisterQuickSelectDialog()
             allowShowOnNextScene = true,
         },
         title = {
-            text = Loc("QuickSelect"),
+            text = GetString(SI_ACTIVITY_FINDER_PLUS_QUICK_SELECT),
         },
         setup = function(dialog)
             dialog.info.parametricList = BuildQuickSelectParametricList()

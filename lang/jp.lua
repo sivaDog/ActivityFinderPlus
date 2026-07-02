@@ -28,36 +28,29 @@ local strings = {
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "スラッシュコマンド：\n設定  /afp\nクイック選択  /afpqs\n本日の誓約  /pl  /pledge\nグループ脱退  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "準備確認中にサウンド通知を繰り返す間隔（秒）。",
 
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DAILY    = "誓約",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_QUEST    = "クエスト",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DONE     = "完了",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_SLASH    = "本日の誓約",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC1     = "マジ・アル＝ラガス",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC2     = "グリリオン・レッドビアード",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC3     = "ウルガルラグ・チーフベイン",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_QUESTS    = "進行中の誓約を選択",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SETS      = "未完了セットを選択",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS = "未クリアクエストを選択",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS_TT = "現在のキャラクターがスキルポイントクエストをまだクリアしていないダンジョンを選択します。",
+    SI_ACTIVITY_FINDER_PLUS_QUICK_SELECT    = "クイック選択",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_LABEL = "ベテランモード",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE    = "ベテランモード：",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_TT = "チェックすると、クイック選択ボタンがノーマルではなくベテランダンジョンを対象にします。",
+    SI_ACTIVITY_FINDER_PLUS_ACHIEVEMENTS_HEADER = "ベテランチャレンジ",
+    SI_ACTIVITY_FINDER_PLUS_VET_CLEAR       = "ベテランクリア",
+    SI_ACTIVITY_FINDER_PLUS_NORMAL_CLEAR    = "ノーマルクリア",
+
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "クイック選択",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "アクティビティ検索",
 }
 
 for stringId, stringValue in pairs(strings) do
-    ZO_CreateStringId(stringId, stringValue)
-    SafeAddVersion(stringId, 1)
+    SafeAddString(_G[stringId], stringValue, 2)
 end
-
-
-ACTIVITY_FINDER_PLUS_STRINGS = {
-    PledgeNPC   = {
-        "マジ・アル＝ラガス",
-        "グリリオン・レッドビアード",
-        "ウルガルラグ・チーフベイン",
-    },
-    PledgeDaily = "誓約",
-    PledgeQuest = "クエスト",
-    PledgeDone  = "完了",
-    PledgeSlash = "本日の誓約",
-    CheckQuests = "進行中の誓約を選択",
-    CheckSets   = "未完了セットを選択",
-    CheckSkillQuests = "未クリアクエストを選択",
-    CheckSkillQuestsTT = "現在のキャラクターがスキルポイントクエストをまだクリアしていないダンジョンを選択します。",
-    QuickSelect = "クイック選択",
-    QuickSelectTT = "初期設定: Y長押し（PSは△）。設定＞操作の「アクティビティ検索」で変更可（ダンジョンファインダー中のみ）。/afpqs でも開けます。",
-    VeteranModeLabel = "ベテランモード",
-    VeteranMode = "ベテランモード：",
-    VeteranModeTT = "チェックすると、クイック選択ボタンがノーマルではなくベテランダンジョンを対象にします。",
-    GamepadAchievementsHeader = "ベテランチャレンジ",
-    GamepadClearLabel = "ベテランクリア",
-    GamepadNormalClearLabel = "ノーマルクリア",
-}

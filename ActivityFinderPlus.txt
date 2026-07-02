@@ -13,9 +13,9 @@
 ## Title: Activity Finder Plus
 ## Version: 1.0.0
 ## Author: FirewoodDoge
-## DependsOn: LibAddonMenu-2.0>=34 LibUndauntedPledges
+## DependsOn: LibAddonMenu-2.0>=43 LibUndauntedPledges>=102020
 ## OptionalDependsOn: LibSets>=9020
-## APIVersion: 101038 101039
+## APIVersion: 101050
 ## SavedVariables: ActivityFinderPlusSavedVars
 ## Description: LFG ready-check alerts, daily pledges in Activity Finder, set collection progress, and more.
 

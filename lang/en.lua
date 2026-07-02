@@ -28,6 +28,25 @@
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Slash commands:\nSettings  /afp\nQuick select  /afpqs\nDaily pledges  /pl  /pledge\nLeave group  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Seconds between repeated sound notifications during a ready check.",
 
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DAILY    = "Pledge",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_QUEST    = "Quest",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_DONE     = "Done",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_SLASH    = "DAILY PLEDGES",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC1     = "Maj al-Ragath",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC2     = "Glirion the Redbeard",
+    SI_ACTIVITY_FINDER_PLUS_PLEDGE_NPC3     = "Urgarlag Chief-bane",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_QUESTS    = "Check Active Quests",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SETS      = "Check Incomplete Sets",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS = "Select Incomplete Quests",
+    SI_ACTIVITY_FINDER_PLUS_CHECK_SKILL_QUESTS_TT = "Select dungeons for which the current character has not yet completed the skill point quest.",
+    SI_ACTIVITY_FINDER_PLUS_QUICK_SELECT    = "Quick Select",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_LABEL = "Veteran Mode",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE    = "Veteran Mode:",
+    SI_ACTIVITY_FINDER_PLUS_VETERAN_MODE_TT = "When checked, quick-select buttons target veteran dungeons instead of normal.",
+    SI_ACTIVITY_FINDER_PLUS_ACHIEVEMENTS_HEADER = "Veteran Challenges",
+    SI_ACTIVITY_FINDER_PLUS_VET_CLEAR       = "Veteran Clear",
+    SI_ACTIVITY_FINDER_PLUS_NORMAL_CLEAR    = "Normal Clear",
+
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Quick Select",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Activity Finder",
 }
@@ -36,28 +55,3 @@ for stringId, stringValue in pairs(strings) do
     ZO_CreateStringId(stringId, stringValue)
     SafeAddVersion(stringId, 1)
 end
-
-
-ACTIVITY_FINDER_PLUS_STRINGS = {
-    PledgeNPC   = {
-        "Maj al-Ragath",
-        "Glirion the Redbeard",
-        "Urgarlag Chief-bane",
-    },
-    PledgeDaily = "Pledge",
-    PledgeQuest = "Quest",
-    PledgeDone  = "Done",
-    PledgeSlash = "DAILY PLEDGES",
-    CheckQuests = "Check Active Quests",
-    CheckSets   = "Check Incomplete Sets",
-    CheckSkillQuests = "Select Incomplete Quests",
-    CheckSkillQuestsTT = "Select dungeons for which the current character has not yet completed the skill point quest.",
-    QuickSelect = "Quick Select",
-    QuickSelectTT = "Default: hold Y (Triangle on PlayStation). Assign under Settings > Controls > Activity Finder (active only in the dungeon finder). Or /afpqs.",
-    VeteranModeLabel = "Veteran Mode",
-    VeteranMode = "Veteran Mode:",
-    VeteranModeTT = "When checked, quick-select buttons target veteran dungeons instead of normal.",
-    GamepadAchievementsHeader = "Veteran Challenges",
-    GamepadClearLabel = "Veteran Clear",
-    GamepadNormalClearLabel = "Normal Clear",
-}

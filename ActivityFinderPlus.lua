@@ -45,7 +45,6 @@ local function RegisterSlashCommands()
 end
 
 local function InitializeAddon()
-    ACTIVITY_FINDER_PLUS.RefreshLocalization()
     LoadSavedVariables()
     RegisterSlashCommands()
     ACTIVITY_FINDER_PLUS.CreateSettingsWindow()

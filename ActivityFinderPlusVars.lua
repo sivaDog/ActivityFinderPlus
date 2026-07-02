@@ -49,14 +49,6 @@ ACTIVITY_FINDER_PLUS.runtimeSettingKeys = {
     "KeyboardAchievementSeparateWindow",
 }
 
-ACTIVITY_FINDER_PLUS.Localization = {
-    language = string.lower(GetCVar("language.2")),
-    Translation = ACTIVITY_FINDER_PLUS_STRINGS,
-    Loc = function(key)
-        return ACTIVITY_FINDER_PLUS.Localization.Translation[key] or key
-    end,
-}
-
 function ACTIVITY_FINDER_PLUS.GetSetting(key)
     local savedVariables = ACTIVITY_FINDER_PLUS.savedVariables
     if not savedVariables then
@@ -81,9 +73,3 @@ function ACTIVITY_FINDER_PLUS.ApplyRuntimeSettings()
     end
 end
 
-function ACTIVITY_FINDER_PLUS.RefreshLocalization()
-    if ACTIVITY_FINDER_PLUS_STRINGS then
-        ACTIVITY_FINDER_PLUS.Localization.Translation = ACTIVITY_FINDER_PLUS_STRINGS
-    end
-    ACTIVITY_FINDER_PLUS.Localization.language = string.lower(GetCVar("language.2"))
-end
