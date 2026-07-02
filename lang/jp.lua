@@ -21,13 +21,12 @@ local strings = {
     SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT      = "誓約・クエスト状況、セットコレクション進捗、実績アイコンを表示します。誓約・スキルポイントクエスト・未完了セットのクイック選択ボタンを追加します。ゲームパッドでは設定＞操作の「アクティビティ検索」に割り当てるか /afpqs で開きます（ダンジョンファインダー中のみ有効）。",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION  = "セットコレクション進捗",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT = "各ダンジョンの解放済み／合計セットコレクション数を表示します。LibSets が必要です。",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE = "実績情報を独立ウィンドウに表示",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE_TT = "キーボードモードのみ有効です。チェックすると、ダンジョンの実績情報をゲーム標準のツールチップとは別の独立したウィンドウ（下側）に表示し、他のアドオンとの表示競合を避けます。チェックを外すと、ゲーム標準のツールチップに直接書き込みます。DungeonTracker のようにツールチップを拡張する他のアドオンと表示が重なる場合があります。",
     SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT       = "グループが見つかったとき、準備確認を自動的に承認します。",
     SI_ACTIVITY_FINDER_PLUS_RELEASE_TT      = "バトルグラウンドで死亡した後、自動的にリリースします。",
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "スラッシュコマンド：\n設定  /afp\nクイック選択  /afpqs\n本日の誓約  /pl  /pledge\nグループ脱退  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "準備確認中にサウンド通知を繰り返す間隔（秒）。",
-
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK        = "フィードバックを送る",
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT     = "メンテナーにフィードバック、提案、バグ報告を送信します。",
 
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "クイック選択",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "アクティビティ検索",
@@ -58,4 +57,7 @@ ACTIVITY_FINDER_PLUS_STRINGS = {
     VeteranModeLabel = "ベテランモード",
     VeteranMode = "ベテランモード：",
     VeteranModeTT = "チェックすると、クイック選択ボタンがノーマルではなくベテランダンジョンを対象にします。",
+    GamepadAchievementsHeader = "ベテランチャレンジ",
+    GamepadClearLabel = "ベテランクリア",
+    GamepadNormalClearLabel = "ノーマルクリア",
 }

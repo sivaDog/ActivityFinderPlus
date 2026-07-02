@@ -21,13 +21,12 @@
     SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT      = "Zeigt Gelöbnis- und Queststatus, Set-Sammlungsfortschritt und Erfolgssymbole. Fügt Schnellauswahl-Schaltflächen für Gelöbnisse, Skillpunkt-Quests und unvollständige Sets hinzu.",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION  = "Set-Sammlungsfortschritt",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT = "Freigeschaltete und gesamte Set-Sammlungsteile pro Dungeon anzeigen. Benötigt LibSets.",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE = "Erfolgsinfo in separatem Fenster",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE_TT = "Nur Tastatur-Modus. Wenn aktiviert, wird die Dungeon-Erfolgsinfo in einem eigenen Fenster unterhalb der Spiel-Tooltip angezeigt, um Überlappungen mit anderen Addons zu vermeiden. Wenn deaktiviert, wird sie direkt in die Spiel-Tooltip geschrieben, was sich mit anderen Addons überschneiden kann, die diese ebenfalls anpassen (z. B. DungeonTracker).",
     SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT       = "Die Bereitschaftsprüfung automatisch annehmen, sobald eine Gruppe gefunden wurde.",
     SI_ACTIVITY_FINDER_PLUS_RELEASE_TT      = "Nach dem Tod in einem Schlachtfeld automatisch wiederbeleben.",
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Slash-Befehle:\nEinstellungen  /afp\nTägliche Gelöbnisse  /pl  /pledge\nGruppe verlassen  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Sekunden zwischen wiederholten Tonbenachrichtigungen während einer Bereitschaftsprüfung.",
-
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK        = "Feedback senden",
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT     = "Dem Betreuer eine Nachricht mit Feedback, Vorschlägen oder Fehlerberichten senden.",
 
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Schnellauswahl",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Aktivitätensuche",
@@ -58,4 +57,7 @@ ACTIVITY_FINDER_PLUS_STRINGS = {
     VeteranModeLabel = "Veteranenmodus",
     VeteranMode = "Veteranenmodus:",
     VeteranModeTT = "Wenn aktiviert, zielen die Schnellauswahl-Schaltflächen auf Veteranen-Dungeons statt auf normale.",
+    GamepadAchievementsHeader = "Veteranen-Herausforderungen",
+    GamepadClearLabel = "Veteran abgeschlossen",
+    GamepadNormalClearLabel = "Normal abgeschlossen",
 }

@@ -4,7 +4,6 @@ ACTIVITY_FINDER_PLUS.name = "ActivityFinderPlus"
 ACTIVITY_FINDER_PLUS.version = "1.0.0"
 ACTIVITY_FINDER_PLUS.displayName = "Activity Finder Plus"
 ACTIVITY_FINDER_PLUS.author = "FirewoodDoge"
-ACTIVITY_FINDER_PLUS.maintainerAccount = "@FirewoodDoge"
 ACTIVITY_FINDER_PLUS.authorDisplay = ACTIVITY_FINDER_PLUS.author
 ACTIVITY_FINDER_PLUS.repositoryUrl = "https://github.com/sivaDog/ActivityFinderPlus"
 ACTIVITY_FINDER_PLUS.variableVersion = 1
@@ -36,6 +35,7 @@ ACTIVITY_FINDER_PLUS.defaults = {
     SoundNotify = true,
     gamepadQuickSelectKeybindTouched = false,
     gamepadQuickSelectBinding = nil,
+    KeyboardAchievementSeparateWindow = false,
 }
 
 ACTIVITY_FINDER_PLUS.runtimeSettingKeys = {
@@ -46,6 +46,7 @@ ACTIVITY_FINDER_PLUS.runtimeSettingKeys = {
     "NotifyDelay",
     "EnhanceGAF",
     "ShowSetCollectionProgress",
+    "KeyboardAchievementSeparateWindow",
 }
 
 ACTIVITY_FINDER_PLUS.Localization = {

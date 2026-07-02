@@ -1,9 +1,17 @@
 local DungeonData = ACTIVITY_FINDER_PLUS.DungeonData
+local Loc = ACTIVITY_FINDER_PLUS.Localization.Loc
 
 local ICON_QUEST_DONE = "|t16:16:/esoui/art/cadwell/check.dds|t"
 local ICON_HARDMODE = "|t20:20:/esoui/art/unitframes/target_veteranrank_icon.dds|t"
 local ICON_TRIFECTA = "|t20:20:/esoui/art/ava/overview_icon_underdog_score.dds|t"
 local ICON_NO_DEATH = "|t20:20:/esoui/art/treeicons/gamepad/gp_tutorial_idexicon_death.dds|t"
+
+local ICON_ACHIEVEMENT_DONE = "|t28:28:/esoui/art/cadwell/check.dds|t"
+local ICON_ACHIEVEMENT_PENDING = "|t28:28:/esoui/art/buttons/decline_up.dds|t"
+
+local KEYBOARD_TOOLTIP_WIDTH = 420
+local KEYBOARD_TOOLTIP_BASE_HEIGHT = 240
+local KEYBOARD_TOOLTIP_LINE_HEIGHT = 24
 
 local cacheEventsRegistered = false
 local isDecoratingRows = false
@@ -147,6 +155,89 @@ local function BuildIconText(cacheEntry)
         icons = icons .. ICON_NO_DEATH
     end
     return icons
+end
+ACTIVITY_FINDER_PLUS.BuildIconText = BuildIconText
+
+-- activityId (either normal.id or vet.id) -> dungeon record, mode ("normal"/"vet").
+function ACTIVITY_FINDER_PLUS.GetDungeonForActivityId(activityId)
+    if not activityId then return nil end
+
+    if not ACTIVITY_FINDER_PLUS.FinderVeteranIndex then
+        ACTIVITY_FINDER_PLUS.BuildDungeonIndices()
+    end
+
+    local vetDungeon = ACTIVITY_FINDER_PLUS.FinderVeteranIndex and ACTIVITY_FINDER_PLUS.FinderVeteranIndex[activityId]
+    if vetDungeon then return vetDungeon, "vet" end
+
+    local normalDungeon = ACTIVITY_FINDER_PLUS.FinderNormalIndex and ACTIVITY_FINDER_PLUS.FinderNormalIndex[activityId]
+    if normalDungeon then return normalDungeon, "normal" end
+
+    return nil
+end
+
+local function BuildAchievementMark(done)
+    return done and ICON_ACHIEVEMENT_DONE or ICON_ACHIEVEMENT_PENDING
+end
+
+local function BuildAchievementLine(done, text)
+    local color = done and "c5eeb5e" or "caaaaaa"
+    return string.format("%s |%s%s|r", BuildAchievementMark(done), color, text)
+end
+
+-- Shared by the gamepad singular panel and the keyboard hover tooltip.
+-- mode is "vet" or "normal"; only vet dungeons carry hm/tt/nd challenge IDs.
+function ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
+    local modeData = dungeon and dungeon[mode]
+    if not modeData then return nil end
+
+    local parts = {}
+    local cacheEntry = ACTIVITY_FINDER_PLUS.completionCache and ACTIVITY_FINDER_PLUS.completionCache[modeData.id]
+
+    if mode == "vet" then
+        local header = "|cffcc66" .. Loc("GamepadAchievementsHeader") .. "|r"
+        if modeData.tt then
+            header = header .. " " .. BuildAchievementMark(IsAchievementComplete(modeData.tt))
+        end
+
+        local iconRow = BuildIconText(cacheEntry)
+        if iconRow ~= "" then
+            header = header .. " " .. iconRow
+        end
+
+        table.insert(parts, header)
+    end
+
+    local lines = {}
+
+    if modeData.ac then
+        -- vet.ac/normal.ac are account-wide achievements, so they stay
+        -- checked on alts who never ran the dungeon. questDone tracks the
+        -- current character's own pledge/skill quest completion instead.
+        table.insert(lines, BuildAchievementLine(
+            cacheEntry ~= nil and cacheEntry.questDone == true,
+            Loc(mode == "vet" and "GamepadClearLabel" or "GamepadNormalClearLabel")))
+    end
+
+    if mode == "vet" then
+        -- hm/tt/nd are three separate achievement IDs (hard mode, trifecta,
+        -- no death), same as the icon logic above.
+        for _, achievementId in ipairs({ modeData.hm, modeData.tt, modeData.nd }) do
+            if achievementId then
+                local name = GetAchievementInfo(achievementId)
+                if name and name ~= "" then
+                    table.insert(lines, BuildAchievementLine(
+                        IsAchievementComplete(achievementId),
+                        zo_strformat("<<1>>", name)))
+                end
+            end
+        end
+    end
+
+    if #lines == 0 then return nil end
+
+    table.insert(parts, table.concat(lines, "\n"))
+
+    return table.concat(parts, "\n")
 end
 
 -- Quest/achievement completion: cached at login and refreshed on achievement events.
@@ -565,6 +656,131 @@ local function InitCachesIfReady()
     ACTIVITY_FINDER_PLUS.RefreshPledgeJournal()
 end
 
+-- Keyboard equivalent of the gamepad singular panel. Other addons (e.g.
+-- DungeonTracker) also hook ShowActivityTooltip and inject their own content
+-- directly into ZO_ActivityFinderTemplateTooltip_Keyboard's Contents control,
+-- which can collide with ours. KeyboardAchievementSeparateWindow (settings
+-- panel) lets the user pick: a window we fully own (never collides with
+-- anything, but sits apart from the native tooltip), or writing straight
+-- into the native tooltip's Contents like the old behavior (matches native
+-- layout, but can visually overlap other addons doing the same thing -
+-- that collision is a known, accepted tradeoff of this mode).
+local function CountTextLines(text)
+    local _, lineBreaks = text:gsub("\n", "\n")
+    return lineBreaks + 1
+end
+
+-- "Separate window" mode: a floating window we fully own, anchored below
+-- the native tooltip so it never overlaps content any addon adds inside or
+-- beside that tooltip.
+local keyboardAchievementTooltip
+
+local function GetKeyboardAchievementTooltip()
+    if keyboardAchievementTooltip then return keyboardAchievementTooltip end
+
+    local tooltip = WINDOW_MANAGER:CreateTopLevelWindow("ACTIVITY_FINDER_PLUS_KeyboardAchievementTooltip")
+    tooltip:SetClampedToScreen(true)
+    tooltip:SetMouseEnabled(false)
+    tooltip:SetDrawTier(DT_HIGH)
+    tooltip:SetHidden(true)
+
+    local backdrop = WINDOW_MANAGER:CreateControlFromVirtual("$(parent)Bg", tooltip, "ZO_DefaultBackdrop")
+    backdrop:SetAnchorFill()
+
+    local label = WINDOW_MANAGER:CreateControl("$(parent)Label", tooltip, CT_LABEL)
+    label:SetFont("ZoFontGameLarge")
+    label:SetHorizontalAlignment(TEXT_ALIGN_LEFT)
+    label:SetVerticalAlignment(TEXT_ALIGN_TOP)
+    label:SetAnchor(TOPLEFT, tooltip, TOPLEFT, 10, 10)
+    label:SetAnchor(BOTTOMRIGHT, tooltip, BOTTOMRIGHT, -10, -10)
+
+    keyboardAchievementTooltip = { control = tooltip, label = label }
+    return keyboardAchievementTooltip
+end
+
+local function ShowSeparateWindow(achievementText)
+    local panel = GetKeyboardAchievementTooltip()
+    if not achievementText then
+        panel.control:SetHidden(true)
+        return
+    end
+
+    panel.label:SetText(achievementText)
+    panel.control:ClearAnchors()
+    panel.control:SetAnchor(TOPLEFT, ZO_ActivityFinderTemplateTooltip_Keyboard, BOTTOMLEFT, 0, 10)
+    panel.control:SetDimensions(KEYBOARD_TOOLTIP_WIDTH, CountTextLines(achievementText) * KEYBOARD_TOOLTIP_LINE_HEIGHT + 20)
+    panel.control:SetHidden(false)
+end
+
+local function HideSeparateWindow()
+    if keyboardAchievementTooltip then
+        keyboardAchievementTooltip.control:SetHidden(true)
+    end
+end
+
+-- "Same area" mode: writes directly into the native tooltip's Contents,
+-- below its set-types section, growing the native tooltip to fit. Can
+-- overlap other addons that customize the same tooltip; that's accepted.
+local keyboardInlineAchievementLabel
+
+local function GetKeyboardInlineAchievementLabel(parent)
+    if keyboardInlineAchievementLabel then return keyboardInlineAchievementLabel end
+    local label = WINDOW_MANAGER:CreateControl("ACTIVITY_FINDER_PLUS_KeyboardInlineAchievements", parent, CT_LABEL)
+    label:SetFont("ZoFontGameLarge")
+    label:SetHorizontalAlignment(TEXT_ALIGN_LEFT)
+    label:SetVerticalAlignment(TEXT_ALIGN_TOP)
+    label:SetDimensions(KEYBOARD_TOOLTIP_WIDTH - 40, 160)
+    label:SetDrawTier(2)
+    keyboardInlineAchievementLabel = label
+    return label
+end
+
+local function ShowInline(achievementText)
+    local tooltip = ZO_ActivityFinderTemplateTooltip_Keyboard
+    local tooltipContents = tooltip:GetNamedChild("Contents")
+    local setTypesSectionControl = tooltipContents:GetNamedChild("SetTypesSection")
+
+    local label = GetKeyboardInlineAchievementLabel(tooltipContents)
+    label:ClearAnchors()
+    label:SetAnchor(TOPLEFT, setTypesSectionControl, BOTTOMLEFT, 0, 10)
+    label:SetText(achievementText or "")
+    label:SetHidden(not achievementText)
+
+    local extraHeight = 0
+    if achievementText then
+        extraHeight = CountTextLines(achievementText) * KEYBOARD_TOOLTIP_LINE_HEIGHT + 20
+    end
+    tooltip:SetDimensions(KEYBOARD_TOOLTIP_WIDTH, KEYBOARD_TOOLTIP_BASE_HEIGHT + extraHeight)
+end
+
+local function HideInline()
+    if keyboardInlineAchievementLabel then
+        keyboardInlineAchievementLabel:SetHidden(true)
+    end
+end
+
+local function AppendAchievementsToKeyboardTooltip(control)
+    local achievementText
+    if ACTIVITY_FINDER_PLUS.EnhanceGAF then
+        local data = control.node and control.node.data
+        local dungeon, mode = ACTIVITY_FINDER_PLUS.GetDungeonForActivityId(data and data.id)
+        achievementText = dungeon and ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
+    end
+
+    if ACTIVITY_FINDER_PLUS.KeyboardAchievementSeparateWindow then
+        HideInline()
+        ShowSeparateWindow(achievementText)
+    else
+        HideSeparateWindow()
+        ShowInline(achievementText)
+    end
+end
+
+local function HideKeyboardAchievementTooltip()
+    HideSeparateWindow()
+    HideInline()
+end
+
 function ACTIVITY_FINDER_PLUS.InitializePledges()
     ACTIVITY_FINDER_PLUS.BuildDungeonIndices()
     ACTIVITY_FINDER_PLUS.libSetsAvailable = IsLibSetsAvailable()
@@ -603,6 +819,7 @@ function ACTIVITY_FINDER_PLUS.InitializePledges()
         if ACTIVITY_FINDER_PLUS_VeteranLabel then ACTIVITY_FINDER_PLUS_VeteranLabel:SetHidden(true) end
         if ACTIVITY_FINDER_PLUS_VeteranCheck then ACTIVITY_FINDER_PLUS_VeteranCheck:SetHidden(true) end
         ACTIVITY_FINDER_PLUS.showSpecificDung = false
+        HideKeyboardAchievementTooltip()
     end)
 
     ZO_PostHook(ZO_ActivityFinderTemplate_Keyboard, "RefreshView", function(self)
@@ -615,6 +832,9 @@ function ACTIVITY_FINDER_PLUS.InitializePledges()
             zo_callLater(OnDungeonListRefresh, 0)
         end
     end)
+
+    ZO_PostHook(ZO_ActivityFinderTemplate_Keyboard, "ShowActivityTooltip", AppendAchievementsToKeyboardTooltip)
+    ZO_PostHook(ZO_ActivityFinderTemplate_Keyboard, "HideActivityTooltip", HideKeyboardAchievementTooltip)
 
     ACTIVITY_FINDER_PLUS.InitializePledgesGamepad()
 end

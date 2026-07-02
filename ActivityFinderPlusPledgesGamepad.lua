@@ -611,6 +611,56 @@ local function RegisterQuickSelectSlashCommand()
     end
 end
 
+-- Achievement panel text (BuildAchievementPanelText) and dungeon lookup
+-- (GetDungeonForActivityId) are shared with the keyboard tooltip hook in
+-- ActivityFinderPlusPledges.lua.
+local function GetSelectedDungeonForFinder(gamepadFinder)
+    if type(gamepadFinder.GetCurrentList) ~= "function" then return nil end
+    local currentList = gamepadFinder:GetCurrentList()
+    if not currentList then return nil end
+
+    local targetData = currentList:GetTargetData()
+    if not targetData or not targetData.data then return nil end
+
+    local entryData = targetData.data
+    if entryData.isRoleSelector or not entryData.id then return nil end
+
+    return ACTIVITY_FINDER_PLUS.GetDungeonForActivityId(entryData.id)
+end
+
+local function AppendAchievementsToSingularPanel(gamepadFinder)
+    if not ACTIVITY_FINDER_PLUS.EnhanceGAF then return end
+    if gamepadFinder ~= GetDungeonFinderGamepad() then return end
+    if not gamepadFinder.isShowingSingularPanel then return end
+
+    local label = gamepadFinder.descriptionLabel
+    if not label then return end
+
+    local dungeon, mode = GetSelectedDungeonForFinder(gamepadFinder)
+    if not dungeon then return end
+
+    local achievementText = ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
+    if not achievementText then return end
+
+    local currentText = label:GetText()
+    if currentText and currentText ~= "" then
+        label:SetText(currentText .. "\n\n" .. achievementText)
+    else
+        label:SetText(achievementText)
+    end
+end
+
+local function InstallSingularPanelHook(targetClass)
+    if not targetClass or targetClass.__afpAchievementPanelHooked then return end
+    if type(targetClass.RefreshSingularSectionPanel) ~= "function" then return end
+
+    SecurePostHook(targetClass, "RefreshSingularSectionPanel", function(self)
+        AppendAchievementsToSingularPanel(self)
+    end)
+
+    targetClass.__afpAchievementPanelHooked = true
+end
+
 function ACTIVITY_FINDER_PLUS.RefreshGamepadQuickSelectKeybind()
     local gamepadFinder = GetDungeonFinderGamepad()
 
@@ -665,6 +715,7 @@ function ACTIVITY_FINDER_PLUS.InitializePledgesGamepad()
 
     if templateClass then
         InstallGamepadStripHooks(templateClass)
+        InstallSingularPanelHook(templateClass)
     end
     if screenClass and screenClass ~= templateClass then
         InstallGamepadStripHooks(screenClass)

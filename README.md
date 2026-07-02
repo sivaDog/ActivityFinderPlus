@@ -4,7 +4,7 @@ Enhanced Activity Finder and LFG tools for The Elder Scrolls Online.
 
 | | Name |
 |---|---|
-| ESOUI / in-game | **FirewoodDoge** |
+| ESOUI | **FirewoodDoge** |
 | GitHub | **[sivaDog](https://github.com/sivaDog)** |
 
 ## Features

@@ -21,13 +21,12 @@
     SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT      = "Show pledge and quest status, set collection progress, and achievement icons. Adds quick-select buttons for pledges, skill quests, and incomplete sets. On gamepad, assign Quick Select under Controls > Activity Finder (only active in the dungeon finder), or use /afpqs.",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION  = "Set Collection Progress",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT = "Show unlocked and total set collection pieces for each dungeon. Requires LibSets.",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE = "Achievement Info in Separate Window",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE_TT = "Keyboard mode only. When checked, dungeon achievement info shows in its own window below the game's tooltip, avoiding overlap with other addons. When unchecked, it's written directly into the game's tooltip instead, which may overlap with other addons that also customize it (e.g. DungeonTracker).",
     SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT       = "Automatically accept the ready check when a group is found.",
     SI_ACTIVITY_FINDER_PLUS_RELEASE_TT      = "Automatically release after dying in a Battleground.",
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Slash commands:\nSettings  /afp\nQuick select  /afpqs\nDaily pledges  /pl  /pledge\nLeave group  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Seconds between repeated sound notifications during a ready check.",
-
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK        = "Send Feedback",
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT     = "Send the maintainer a message with feedback, suggestions, or bug reports.",
 
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Quick Select",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Activity Finder",
@@ -58,4 +57,7 @@ ACTIVITY_FINDER_PLUS_STRINGS = {
     VeteranModeLabel = "Veteran Mode",
     VeteranMode = "Veteran Mode:",
     VeteranModeTT = "When checked, quick-select buttons target veteran dungeons instead of normal.",
+    GamepadAchievementsHeader = "Veteran Challenges",
+    GamepadClearLabel = "Veteran Clear",
+    GamepadNormalClearLabel = "Normal Clear",
 }

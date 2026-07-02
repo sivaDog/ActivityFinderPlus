@@ -21,13 +21,12 @@
     SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT      = "Показывает статус обетов и заданий, прогресс коллекции сетов и значки достижений. Добавляет кнопки быстрого выбора для обетов, квестов на очко навыка и незавершённых сетов.",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION  = "Прогресс коллекции сетов",
     SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT = "Показывать количество разблокированных и общее число частей коллекции сетов для каждого подземелья. Требуется LibSets.",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE = "Информация о достижениях в отдельном окне",
+    SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE_TT = "Только для клавиатурного режима. Если включено, информация о достижениях подземелья показывается в отдельном окне под подсказкой игры, что исключает наложение с другими аддонами. Если выключено, она записывается прямо в подсказку игры, что может накладываться на другие аддоны, которые тоже её изменяют (например, DungeonTracker).",
     SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT       = "Автоматически принимать проверку готовности, когда группа найдена.",
     SI_ACTIVITY_FINDER_PLUS_RELEASE_TT      = "Автоматически возрождаться после смерти на поле боя.",
     SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Команды чата:\nНастройки  /afp\nЕжедневные обеты  /pl  /pledge\nПокинуть группу  /lv  /leave",
     SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Секунды между повторными звуковыми уведомлениями во время проверки готовности.",
-
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK        = "Отправить отзыв",
-    SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT     = "Отправить сопровождающему сообщение с отзывом, предложениями или сообщениями об ошибках.",
 
     SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Быстрый выбор",
     SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Поиск активностей",
@@ -58,4 +57,7 @@ ACTIVITY_FINDER_PLUS_STRINGS = {
     VeteranModeLabel = "Режим ветерана",
     VeteranMode = "Режим ветерана:",
     VeteranModeTT = "Если отмечено, кнопки быстрого выбора будут выбирать ветеранские подземелья вместо обычных.",
+    GamepadAchievementsHeader = "Испытания ветерана",
+    GamepadClearLabel = "Пройдено в режиме ветерана",
+    GamepadNormalClearLabel = "Пройдено в обычном режиме",
 }

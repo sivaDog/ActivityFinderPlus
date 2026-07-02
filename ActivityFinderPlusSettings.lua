@@ -68,21 +68,13 @@ function ACTIVITY_FINDER_PLUS.CreateSettingsWindow()
                 RefreshCollectionDisplay()
             end,
         }),
+        CheckboxOption("KeyboardAchievementSeparateWindow", SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE, SI_ACTIVITY_FINDER_PLUS_KEYBOARD_TOOLTIP_MODE_TT, false, {
+            disabled = function() return not ACTIVITY_FINDER_PLUS.EnhanceGAF end,
+        }),
 
         { type = "header", name = GetString(SI_ACTIVITY_FINDER_PLUS_HEADER_OTHER) },
         CheckboxOption("AutoRelease", SI_ACTIVITY_FINDER_PLUS_RELEASE, SI_ACTIVITY_FINDER_PLUS_RELEASE_TT, false),
         { type = "description", text = GetString(SI_ACTIVITY_FINDER_PLUS_SLASH_TT) },
-
-        { type = "divider", height = 15, alpha = 1.0, width = "full" },
-        {
-            type = "button",
-            name = GetString(SI_ACTIVITY_FINDER_PLUS_FEEDBACK),
-            func = function()
-                MAIN_MENU_KEYBOARD:ShowScene("mailSend")
-                MAIL_SEND:SetReply(ACTIVITY_FINDER_PLUS.maintainerAccount, ACTIVITY_FINDER_PLUS.name)
-            end,
-            tooltip = GetString(SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT),
-        },
     }
     LAM:RegisterOptionControls(PANEL_NAME, optionsData)
 end
