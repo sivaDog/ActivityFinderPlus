@@ -1,8 +1,6 @@
-# Group Synergizer
+# Activity Finder Plus
 
-Community-maintained update of **[Group Synergizer](https://www.esoui.com/downloads/info2286-GroupSynergizer-EnhancedLFGFeaturesAutoAcceptQueBetterNotifications.html)** by **scorpius2k1**.
-
-This fork is **not affiliated with the original author**. I maintain it for my own use and am seeking official maintainer handover on ESOUI for the [original addon page](https://www.esoui.com/downloads/info2286-GroupSynergizer-EnhancedLFGFeaturesAutoAcceptQueBetterNotifications.html).
+Enhanced Activity Finder and LFG tools for The Elder Scrolls Online.
 
 | | Name |
 |---|---|
@@ -11,24 +9,24 @@ This fork is **not affiliated with the original author**. I maintain it for my o
 
 ## Features
 
-- Enhanced sound and screen notifications for LFG ready checks
-- Daily pledge and quest status in the Activity Finder
-- Set collection progress per dungeon (optional, requires [LibSets](https://www.esoui.com/downloads/info2241-LibSets.html))
-- Auto-accept ready checks (optional)
+### Ready check
+- Enhanced sound and screen notifications
+- Auto-accept via settings (`/afp`) — no in-game checkbox (removed; official UI layout changed)
+- Configurable sound repeat delay
+
+### Activity Finder
+- Daily pledge and quest status on dungeon rows
+- Set collection progress per dungeon (requires [LibSets](https://www.esoui.com/downloads/info2241-LibSets.html))
+- Achievement icons for veteran hard mode, trifecta, and no-death runs
+- Quick-select buttons:
+  - **Check Active Quests** — incomplete pledges in your journal
+  - **Select Incomplete Quests** — skill point quests not yet completed
+  - **Check Incomplete Sets** — unfinished set collection (requires LibSets)
+- **Veteran Mode** checkbox — target normal or veteran dungeons when using quick-select
+
+### Other
 - Auto-release in battlegrounds (optional)
-- Slash commands: `/pledge`, `/pl`, `/leave`, `/lv`, `/gs`
-
-## Screenshots
-
-Activity Finder (Dungeon Finder) with Group Synergizer enabled:
-
-![Activity Finder with pledge status, set collection progress, and achievement icons](sample.png)
-
-- **Pledge / Quest / Done** — daily pledge and quest completion next to each dungeon
-- **Set collection** — unlocked/total pieces (e.g. `55/72`; green when complete), requires LibSets
-- **Achievement icons** — veteran hard mode, trifecta, and no-death status
-- **Auto-Accept Ready Check** — optional checkbox below the dungeon list
-- **Check Active Quests** — button to verify active pledge quests in your journal
+- Slash commands: `/afp`, `/pledge`, `/pl`, `/leave`, `/lv`
 
 ## Requirements
 
@@ -39,27 +37,20 @@ Activity Finder (Dungeon Finder) with Group Synergizer enabled:
 ## Installation
 
 1. Install dependencies via Minion or manually from ESOUI.
-2. Copy the `GroupSynergizer` folder into your `AddOns` directory.
-3. Enable the addon in-game.
+2. Copy the `ActivityFinderPlus` folder into your `AddOns` directory.
+3. Enable the addon in the in-game Add-ons menu.
 
-## Changes since ESOUI 4.1 (Necrom)
+Settings: `/afp`
 
-- Updated dungeon and pledge data for current patches
-- Quest ID-based pledge tracking (replacing string matching)
-- Integration with LibUndauntedPledges for pledge cycle detection
-- Set collection progress in Activity Finder via LibSets
-- Dungeon Finder crash fixes and UI stability improvements
+## Upgrading from Group Synergizer
+
+Saved settings are imported automatically on first load from `GroupSynergizerSavedVars`. You can remove the old addon after confirming your settings migrated.
 
 ## Credits
 
-- **Original author:** [scorpius2k1](https://www.esoui.com/downloads/author-47149.html) (Group Synergizer 1.0–4.1)
-- **Maintainer:** FirewoodDoge ([GitHub: sivaDog](https://github.com/sivaDog))
+- **Author:** FirewoodDoge ([GitHub: sivaDog](https://github.com/sivaDog))
 - **UI helpers:** Modified code from [Bandits User Interface](https://www.esoui.com/downloads/info1643-BanditsUserInterface.html) by Hoft, secretrob
 
 ## Feedback
 
-- GitHub: [Issues](https://github.com/sivaDog/UnofficialGroupSynergizer/issues)
-
-## License
-
-No license file was included with the original addon. This fork respects the original work and ESOUI guidelines. Do not republish without proper attribution.
+- GitHub: [Issues](https://github.com/sivaDog/ActivityFinderPlus/issues)
