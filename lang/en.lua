@@ -1,34 +1,36 @@
 ﻿local strings = {
-    SI_GROUP_SYNERGIZER_LANG 		= "en",
+    SI_ACTIVITY_FINDER_PLUS_LANG            = "en",
 
-    SI_GROUP_SYNERGIZER_ENABLE		= "Enabled",
-    SI_GROUP_SYNERGIZER_SOUND		= "Enhanced Sound",
-    SI_GROUP_SYNERGIZER_SCREEN		= "Enhanced Visual",
-    SI_GROUP_SYNERGIZER_ENHANCE		= "Enhanced LFG",
-    SI_GROUP_SYNERGIZER_ACCEPT		= "Auto-Accept Ready Checks",
-    SI_GROUP_SYNERGIZER_RELEASE		= "Auto-Release in Battlegrounds",
-    SI_GROUP_SYNERGIZER_SLASH		= "Pledge/Group Slash Commands",
-    SI_GROUP_SYNERGIZER_DELAY		= "Sound Notification Delay",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_LFG    = "Ready Check",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_FINDER = "Activity Finder",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_OTHER  = "Other",
 
-    SI_GROUP_SYNERGIZER_LFG_CHAT	= "Ready Check!",
-    SI_GROUP_SYNERGIZER_LFG_CHAT_A	= "Auto-Accepted Ready Check!",
-    SI_GROUP_SYNERGIZER_LFG_SCREEN	= "Group Ready Check!",
-    
-    SI_GROUP_SYNERGIZER_ENABLE_TT	= "Enable/Disable LFG Enhancer",
-    SI_GROUP_SYNERGIZER_SOUND_TT	= "More Audible Sound On Ready Check",
-    SI_GROUP_SYNERGIZER_SCREEN_TT	= "Better Screen Notification On Ready Check",
-    SI_GROUP_SYNERGIZER_ENHANCE_TT	= "Show Daily Pledges/Quests, Auto-Accept, And Check Active Quests In Group & Activity Finder",
-    SI_GROUP_SYNERGIZER_SET_COLLECTION = "Set Collection Progress",
-    SI_GROUP_SYNERGIZER_SET_COLLECTION_TT = "Show unlocked/total set collection pieces per dungeon in Activity Finder (requires LibSets)",
-    SI_GROUP_SYNERGIZER_ACCEPT_TT	= "Auto-Accept 'Looking For Group' Ready Check",
-    SI_GROUP_SYNERGIZER_RELEASE_TT	= "Auto-Release On Battlegrounds Death",
-    SI_GROUP_SYNERGIZER_SLASH_TT	= "Slash Commands\nDaily Pledges /pl /pledge\nGroup Leave /lv /leave",
-    SI_GROUP_SYNERGIZER_DELAY_TT	= "Delay (In Seconds) Between Sound Nofications On LFG Ready Check",
+    SI_ACTIVITY_FINDER_PLUS_SOUND           = "Enhanced Sound",
+    SI_ACTIVITY_FINDER_PLUS_SCREEN          = "Enhanced Visuals",
+    SI_ACTIVITY_FINDER_PLUS_ENHANCE         = "Enhanced Activity Finder",
+    SI_ACTIVITY_FINDER_PLUS_ACCEPT          = "Auto-Accept Ready Checks",
+    SI_ACTIVITY_FINDER_PLUS_RELEASE         = "Auto-Release in Battlegrounds",
+    SI_ACTIVITY_FINDER_PLUS_DELAY           = "Sound Notification Delay",
 
-    SI_GROUP_SYNERGIZER_SLASH_WARN	= "UI Reload Required",
+    SI_ACTIVITY_FINDER_PLUS_LFG_CHAT        = "Ready Check!",
+    SI_ACTIVITY_FINDER_PLUS_LFG_CHAT_A      = "Ready check auto-accepted!",
+    SI_ACTIVITY_FINDER_PLUS_LFG_SCREEN      = "Group Ready Check!",
 
-    SI_GROUP_SYNERGIZER_FEEDBACK	= "Send Feedback",
-    SI_GROUP_SYNERGIZER_FEEDBACK_TT = "Send the maintainer a message with any feedback, suggestions, or bug reports"
+    SI_ACTIVITY_FINDER_PLUS_SOUND_TT        = "Play a louder, repeating sound when a ready check appears.",
+    SI_ACTIVITY_FINDER_PLUS_SCREEN_TT       = "Show a large on-screen alert when a ready check appears.",
+    SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT      = "Show pledge and quest status, set collection progress, and achievement icons. Adds quick-select buttons for pledges, skill quests, and incomplete sets. On gamepad, assign Quick Select under Controls > Activity Finder (only active in the dungeon finder), or use /afpqs.",
+    SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION  = "Set Collection Progress",
+    SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT = "Show unlocked and total set collection pieces for each dungeon. Requires LibSets.",
+    SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT       = "Automatically accept the ready check when a group is found.",
+    SI_ACTIVITY_FINDER_PLUS_RELEASE_TT      = "Automatically release after dying in a Battleground.",
+    SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Slash commands:\nSettings  /afp\nQuick select  /afpqs\nDaily pledges  /pl  /pledge\nLeave group  /lv  /leave",
+    SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Seconds between repeated sound notifications during a ready check.",
+
+    SI_ACTIVITY_FINDER_PLUS_FEEDBACK        = "Send Feedback",
+    SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT     = "Send the maintainer a message with feedback, suggestions, or bug reports.",
+
+    SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Quick Select",
+    SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Activity Finder",
 }
 
 for stringId, stringValue in pairs(strings) do
@@ -37,16 +39,23 @@ for stringId, stringValue in pairs(strings) do
 end
 
 
-GROUP_SYNERGIZER_PLEDGES = {
-    PledgeNPC	= {
+ACTIVITY_FINDER_PLUS_STRINGS = {
+    PledgeNPC   = {
         "Maj al-Ragath",
         "Glirion the Redbeard",
         "Urgarlag Chief-bane",
     },
-    PledgeDaily	= "Pledge",
-    PledgeQuest	= "Quest",
-    PledgeDone	= "Done",
+    PledgeDaily = "Pledge",
+    PledgeQuest = "Quest",
+    PledgeDone  = "Done",
     PledgeSlash = "DAILY PLEDGES",
     CheckQuests = "Check Active Quests",
-    AutoAccept	= "Auto-Accept Ready Check",
+    CheckSets   = "Check Incomplete Sets",
+    CheckSkillQuests = "Select Incomplete Quests",
+    CheckSkillQuestsTT = "Select dungeons for which the current character has not yet completed the skill point quest.",
+    QuickSelect = "Quick Select",
+    QuickSelectTT = "Default: hold Y (Triangle on PlayStation). Assign under Settings > Controls > Activity Finder (active only in the dungeon finder). Or /afpqs.",
+    VeteranModeLabel = "Veteran Mode",
+    VeteranMode = "Veteran Mode:",
+    VeteranModeTT = "When checked, quick-select buttons target veteran dungeons instead of normal.",
 }

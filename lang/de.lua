@@ -1,31 +1,36 @@
 ﻿local strings = {
-    SI_GROUP_SYNERGIZER_LANG 		= "de",
+    SI_ACTIVITY_FINDER_PLUS_LANG            = "de",
 
-    SI_GROUP_SYNERGIZER_ENABLE 		= "Aktiviert",
-    SI_GROUP_SYNERGIZER_SOUND 		= "Verbesserter Sound",
-    SI_GROUP_SYNERGIZER_SCREEN 		= "Verbesserte Visuelle Darstellung",
-    SI_GROUP_SYNERGIZER_ENHANCE 	= "Verbesserte LFG",
-    SI_GROUP_SYNERGIZER_ACCEPT 		= "Bereitschaftsprüfungen automatisch akzeptieren",
-    SI_GROUP_SYNERGIZER_RELEASE 	= "Automatische Freigabe auf Schlachtfeldern",
-    SI_GROUP_SYNERGIZER_SLASH 		= "Versprechen/Gruppen-Schrägstrich-Befehle",
-    SI_GROUP_SYNERGIZER_DELAY 		= "Verzögerung der Tonbenachrichtigung",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_LFG    = "Bereitschaftsprüfung",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_FINDER = "Aktivitätssuche",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_OTHER  = "Sonstiges",
 
-    SI_GROUP_SYNERGIZER_LFG_CHAT	= "Bereitschaftsprüfung!",
-    SI_GROUP_SYNERGIZER_LFG_CHAT_A	= "Automatische Bereitschaftsprüfung!",
-    SI_GROUP_SYNERGIZER_LFG_SCREEN	= "Gruppenbereitschaftsprüfung!", 
+    SI_ACTIVITY_FINDER_PLUS_SOUND           = "Verbesserter Ton",
+    SI_ACTIVITY_FINDER_PLUS_SCREEN          = "Verbesserte Anzeige",
+    SI_ACTIVITY_FINDER_PLUS_ENHANCE         = "Verbesserte Aktivitätssuche",
+    SI_ACTIVITY_FINDER_PLUS_ACCEPT          = "Bereitschaftsprüfung automatisch annehmen",
+    SI_ACTIVITY_FINDER_PLUS_RELEASE         = "Automatisches Wiederbeleben in Schlachtfeldern",
+    SI_ACTIVITY_FINDER_PLUS_DELAY           = "Verzögerung der Tonbenachrichtigung",
 
-    SI_GROUP_SYNERGIZER_ENABLE_TT 	= "LFG-Enhancer aktivieren/deaktivieren",
-    SI_GROUP_SYNERGIZER_SOUND_TT 	= "Mehr hörbarer Ton bei Bereitschaftsprüfung",
-    SI_GROUP_SYNERGIZER_SCREEN_TT 	= "Bessere Bildschirmbenachrichtigung bei Bereitschaftsprüfung",
-    SI_GROUP_SYNERGIZER_ENHANCE_TT 	= "Tägliche Zusagen/Quests anzeigen, aktive Quests automatisch akzeptieren und im Gruppen- und Aktivitätsfinder überprüfen",
-    SI_GROUP_SYNERGIZER_SET_COLLECTION = "Set-Sammlungsfortschritt",
-    SI_GROUP_SYNERGIZER_SET_COLLECTION_TT = "Freigeschaltete/gesamte Set-Sammlungsteile pro Dungeon im Aktivitätenfinder anzeigen (benötigt LibSets)",
-    SI_GROUP_SYNERGIZER_ACCEPT_TT 	= "Bereitschaftsprüfung 'Suche nach Gruppe' automatisch akzeptieren",
-    SI_GROUP_SYNERGIZER_RELEASE_TT 	= "Automatische Freigabe auf Schlachtfeldern Tod",
-    SI_GROUP_SYNERGIZER_SLASH_TT 	= "Schrägstrichbefehle \nTägliches Versprechen /pl /pledge \nGruppe verlassen /lv /leave",
-    SI_GROUP_SYNERGIZER_DELAY_TT 	= "Verzögerung (in Sekunden) zwischen Tonmeldungen bei LFG-Bereitschaftsprüfung",
+    SI_ACTIVITY_FINDER_PLUS_LFG_CHAT        = "Bereitschaftsprüfung!",
+    SI_ACTIVITY_FINDER_PLUS_LFG_CHAT_A      = "Bereitschaftsprüfung automatisch angenommen!",
+    SI_ACTIVITY_FINDER_PLUS_LFG_SCREEN      = "Gruppenbereitschaftsprüfung!",
 
-    SI_GROUP_SYNERGIZER_SLASH_WARN	= "Neuladen der Benutzeroberfläche erforderlich"
+    SI_ACTIVITY_FINDER_PLUS_SOUND_TT        = "Bei einer Bereitschaftsprüfung einen lauteren, wiederholten Ton abspielen.",
+    SI_ACTIVITY_FINDER_PLUS_SCREEN_TT       = "Bei einer Bereitschaftsprüfung einen großen Bildschirmhinweis anzeigen.",
+    SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT      = "Zeigt Gelöbnis- und Queststatus, Set-Sammlungsfortschritt und Erfolgssymbole. Fügt Schnellauswahl-Schaltflächen für Gelöbnisse, Skillpunkt-Quests und unvollständige Sets hinzu.",
+    SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION  = "Set-Sammlungsfortschritt",
+    SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT = "Freigeschaltete und gesamte Set-Sammlungsteile pro Dungeon anzeigen. Benötigt LibSets.",
+    SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT       = "Die Bereitschaftsprüfung automatisch annehmen, sobald eine Gruppe gefunden wurde.",
+    SI_ACTIVITY_FINDER_PLUS_RELEASE_TT      = "Nach dem Tod in einem Schlachtfeld automatisch wiederbeleben.",
+    SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Slash-Befehle:\nEinstellungen  /afp\nTägliche Gelöbnisse  /pl  /pledge\nGruppe verlassen  /lv  /leave",
+    SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Sekunden zwischen wiederholten Tonbenachrichtigungen während einer Bereitschaftsprüfung.",
+
+    SI_ACTIVITY_FINDER_PLUS_FEEDBACK        = "Feedback senden",
+    SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT     = "Dem Betreuer eine Nachricht mit Feedback, Vorschlägen oder Fehlerberichten senden.",
+
+    SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Schnellauswahl",
+    SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Aktivitätensuche",
 }
 
 for stringId, stringValue in pairs(strings) do
@@ -34,16 +39,23 @@ for stringId, stringValue in pairs(strings) do
 end
 
 
-GROUP_SYNERGIZER_PLEDGES = { -- Thank you demawi for translation
-    PledgeNPC	= {
+ACTIVITY_FINDER_PLUS_STRINGS = {
+    PledgeNPC   = {
         "Maj al-Ragath",
         "Glirion der Rotbart",
         "Urgarlag Häuptlingsfluch",
-    },	
+    },
     PledgeDaily = "Gelöbnis",
     PledgeQuest = "Quest",
-    PledgeDone 	= "Erledigt",
+    PledgeDone  = "Erledigt",
     PledgeSlash = "TÄGLICHE GELÖBNISSE",
-    CheckQuests = "Quests überprüfen",
-    AutoAccept 	= "Automatisch Akzeptieren",
+    CheckQuests = "Aktive Quests prüfen",
+    CheckSets   = "Unvollständige Sets prüfen",
+    CheckSkillQuests = "Unvollständige Quests wählen",
+    CheckSkillQuestsTT = "Wählt Dungeons aus, deren Skillpunkt-Quest der aktuelle Charakter noch nicht abgeschlossen hat.",
+    QuickSelect = "Schnellauswahl",
+    QuickSelectTT = "Unter Einstellungen > Steuerung > Aktivitätensuche zuweisen (nur im Dungeon-Finder aktiv). Kampftasten kollidieren nicht mit Fähigkeiten. Oder /afpqs.",
+    VeteranModeLabel = "Veteranenmodus",
+    VeteranMode = "Veteranenmodus:",
+    VeteranModeTT = "Wenn aktiviert, zielen die Schnellauswahl-Schaltflächen auf Veteranen-Dungeons statt auf normale.",
 }

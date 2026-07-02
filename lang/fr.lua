@@ -1,31 +1,36 @@
 ﻿local strings = {
-    SI_GROUP_SYNERGIZER_LANG 		= "fr",
+    SI_ACTIVITY_FINDER_PLUS_LANG            = "fr",
 
-    SI_GROUP_SYNERGIZER_ENABLE 		= "Activé",
-    SI_GROUP_SYNERGIZER_SOUND 		= "Son amélioré",
-    SI_GROUP_SYNERGIZER_SCREEN 		= "Visuel amélioré",
-    SI_GROUP_SYNERGIZER_ENHANCE 	= "LFG amélioré",
-    SI_GROUP_SYNERGIZER_ACCEPT 		= "Chèques prêts à accepter automatiquement",
-    SI_GROUP_SYNERGIZER_RELEASE 	= "Libération automatique dans les champs de bataille",
-    SI_GROUP_SYNERGIZER_SLASH 		= "Commandes Pledge/Group Slash",
-    SI_GROUP_SYNERGIZER_DELAY 		= "Délai de notification sonore",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_LFG    = "Vérification de préparation",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_FINDER = "Recherche d'activité",
+    SI_ACTIVITY_FINDER_PLUS_HEADER_OTHER  = "Autre",
 
-    SI_GROUP_SYNERGIZER_LFG_CHAT 	= "Prêt à vérifier!",
-    SI_GROUP_SYNERGIZER_LFG_CHAT_A 	= "Vérification prêt acceptée automatiquement!",
-    SI_GROUP_SYNERGIZER_LFG_SCREEN 	= "Vérification du groupe prêt!",
+    SI_ACTIVITY_FINDER_PLUS_SOUND           = "Son amélioré",
+    SI_ACTIVITY_FINDER_PLUS_SCREEN          = "Visuel amélioré",
+    SI_ACTIVITY_FINDER_PLUS_ENHANCE         = "Recherche d'activité améliorée",
+    SI_ACTIVITY_FINDER_PLUS_ACCEPT          = "Accepter automatiquement les vérifications de préparation",
+    SI_ACTIVITY_FINDER_PLUS_RELEASE         = "Libération automatique dans les champs de bataille",
+    SI_ACTIVITY_FINDER_PLUS_DELAY           = "Délai de notification sonore",
 
-    SI_GROUP_SYNERGIZER_ENABLE_TT 	= "Activer/Désactiver LFG Enhancer",
-    SI_GROUP_SYNERGIZER_SOUND_TT 	= "Plus de son audible lors de la vérification prête",
-    SI_GROUP_SYNERGIZER_SCREEN_TT 	= "Meilleure notification d'écran lors du contrôle prêt",
-    SI_GROUP_SYNERGIZER_ENHANCE_TT 	= "Afficher les engagements/quêtes quotidiens, accepter automatiquement et vérifier les quêtes actives dans l'outil de recherche de groupes et d'activités",
-    SI_GROUP_SYNERGIZER_SET_COLLECTION = "Progression des collections d'ensembles",
-    SI_GROUP_SYNERGIZER_SET_COLLECTION_TT = "Afficher les pièces de collection débloquées/totales par donjon dans le chercheur d'activités (nécessite LibSets)",
-    SI_GROUP_SYNERGIZER_ACCEPT_TT 	= "Accepter automatiquement le contrôle prêt à la recherche d'un groupe",
-    SI_GROUP_SYNERGIZER_RELEASE_TT 	= "Libération automatique à la mort sur les champs de bataille",
-    SI_GROUP_SYNERGIZER_SLASH_TT 	= "Commandes de barre oblique \nEngagements quotidiens /pl /pledge \nQuitter le groupe /lv /leave",
-    SI_GROUP_SYNERGIZER_DELAY_TT 	= "Délai (en secondes) entre les nofications sonores lors de la vérification LFG Ready",
+    SI_ACTIVITY_FINDER_PLUS_LFG_CHAT        = "Vérification de préparation !",
+    SI_ACTIVITY_FINDER_PLUS_LFG_CHAT_A      = "Vérification de préparation acceptée automatiquement !",
+    SI_ACTIVITY_FINDER_PLUS_LFG_SCREEN      = "Vérification de préparation du groupe !",
 
-    SI_GROUP_SYNERGIZER_SLASH_WARN	= "Recharge de l'interface utilisateur requise"
+    SI_ACTIVITY_FINDER_PLUS_SOUND_TT        = "Jouer un son plus fort et répété lors d'une vérification de préparation.",
+    SI_ACTIVITY_FINDER_PLUS_SCREEN_TT       = "Afficher une grande alerte à l'écran lors d'une vérification de préparation.",
+    SI_ACTIVITY_FINDER_PLUS_ENHANCE_TT      = "Affiche l'état des serments et des quêtes, la progression des collections et les icônes de hauts faits. Ajoute des boutons de sélection rapide pour les serments, les quêtes de points de compétence et les ensembles incomplets.",
+    SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION  = "Progression des collections d'ensembles",
+    SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION_TT = "Afficher les pièces de collection débloquées et totales par donjon. Nécessite LibSets.",
+    SI_ACTIVITY_FINDER_PLUS_ACCEPT_TT       = "Accepter automatiquement la vérification de préparation lorsqu'un groupe est trouvé.",
+    SI_ACTIVITY_FINDER_PLUS_RELEASE_TT      = "Se libérer automatiquement après la mort dans un champ de bataille.",
+    SI_ACTIVITY_FINDER_PLUS_SLASH_TT        = "Commandes textuelles :\nParamètres  /afp\nSerments journaliers  /pl  /pledge\nQuitter le groupe  /lv  /leave",
+    SI_ACTIVITY_FINDER_PLUS_DELAY_TT        = "Secondes entre les notifications sonores répétées pendant une vérification de préparation.",
+
+    SI_ACTIVITY_FINDER_PLUS_FEEDBACK        = "Envoyer un commentaire",
+    SI_ACTIVITY_FINDER_PLUS_FEEDBACK_TT     = "Envoyer un message au mainteneur avec vos commentaires, suggestions ou rapports de bugs.",
+
+    SI_BINDING_NAME_ACTIVITY_FINDER_PLUS_QUICK_SELECT = "Sélection rapide",
+    SI_KEYBINDINGS_LAYER_ACTIVITY_FINDER_PLUS       = "Chercheur d'activités",
 }
 
 for stringId, stringValue in pairs(strings) do
@@ -34,16 +39,23 @@ for stringId, stringValue in pairs(strings) do
 end
 
 
-GROUP_SYNERGIZER_PLEDGES = {
-    PledgeNPC	= {
+ACTIVITY_FINDER_PLUS_STRINGS = {
+    PledgeNPC   = {
         "Maj al-Ragath",
-        "Glirion the Redbeard",
-        "Urgarlag Chief-bane",
+        "Glirion Barbe-Rousse",
+        "Urgarlag l'Émasculatrice",
     },
-    PledgeDaily	= "Engagement",
-    PledgeQuest	= "Quête",
-    PledgeDone	= "Fait",
-    PledgeSlash = "ENGAGEMENTS QUOTIDIENS",
-    CheckQuests = "Vérifier les quêtes",
-    AutoAccept	= "Accepter Automatiquement",
+    PledgeDaily = "Serment",
+    PledgeQuest = "Quête",
+    PledgeDone  = "Fait",
+    PledgeSlash = "SERMENTS JOURNALIERS",
+    CheckQuests = "Vérifier les quêtes actives",
+    CheckSets   = "Vérifier les ensembles incomplets",
+    CheckSkillQuests = "Sélectionner les quêtes incomplètes",
+    CheckSkillQuestsTT = "Sélectionne les donjons dont le personnage actuel n'a pas encore terminé la quête de point de compétence.",
+    QuickSelect = "Sélection rapide",
+    QuickSelectTT = "Assignez dans Paramètres > Commandes > Chercheur d'activités (actif uniquement dans le chercheur de donjon). Les boutons de combat n'entrent pas en conflit. Ou /afpqs.",
+    VeteranModeLabel = "Mode vétéran",
+    VeteranMode = "Mode vétéran :",
+    VeteranModeTT = "Si coché, les boutons de sélection rapide ciblent les donjons vétéran au lieu des donjons normaux.",
 }
