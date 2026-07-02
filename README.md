@@ -83,9 +83,18 @@ Settings: `/afp`
 
 Saved settings are imported automatically on first load from `GroupSynergizerSavedVars`. You can remove the old addon after confirming your settings migrated.
 
+## Compatibility
+
+- **Bandits User Interface** (optional): when installed, Activity Finder Plus hides its `BUI_AutoQueue` control on the group finder scene to avoid overlapping UI. It is an optional soft dependency and is not required.
+
 ## Credits
 
 - **Author:** FirewoodDoge ([GitHub: sivaDog](https://github.com/sivaDog))
+- **UI helpers:** Modified code from [Bandits User Interface](https://www.esoui.com/downloads/info1643-BanditsUserInterface.html) by Hoft, secretrob
+
+## Development note
+
+This addon was developed with the help of an AI coding assistant. The author reviews and tests the code before release.
 
 ## Feedback
 

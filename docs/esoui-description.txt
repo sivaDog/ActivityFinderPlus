@@ -30,7 +30,16 @@
 
 [b]Requirements[/b]
 [url=https://www.esoui.com/downloads/info7-LibAddonMenu-2.0.html]LibAddonMenu-2.0[/url] (>= 43), [url=https://www.esoui.com/downloads/info3314-LibUndauntedPledges.html]LibUndauntedPledges[/url]
-Optional: [url=https://www.esoui.com/downloads/info2241-LibSets.html]LibSets[/url]
+Optional: [url=https://www.esoui.com/downloads/info2241-LibSets.html]LibSets[/url] (set collection progress)
+
+[b]Compatibility & credits[/b]
+[list]
+[*]Optional soft dependency: [url=https://www.esoui.com/downloads/info1643-BanditsUserInterface.html]Bandits User Interface[/url] (by Hoft, secretrob). Not required. When it is installed, Activity Finder Plus hides its BUI_AutoQueue control on the group finder scene to avoid overlapping UI.
+[*]Contains modified UI helper code from Bandits User Interface, used with credit to Hoft and secretrob.
+[/list]
+
+[b]Development note[/b]
+This addon was developed with the help of an AI coding assistant. The author reviews and tests the code before release. Please report any issues on GitHub.
 
 [img]UPLOAD_URL_1[/img]
 [i]Dungeon list — pledge tags, set progress, achievement icons, and quick-select buttons[/i]
