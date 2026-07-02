@@ -54,8 +54,8 @@ end
 
 local function GetCollectionProgressForZone(zoneId)
     if not zoneId or not IsLibSetsAvailable() then return nil, nil end
-    local ok, numUnlocked, numTotal = pcall(LibSets.GetNumItemSetCollectionZoneUnlockedPieces, zoneId)
-    if not ok or not numUnlocked or not numTotal or numTotal <= 0 then
+    local numUnlocked, numTotal = LibSets.GetNumItemSetCollectionZoneUnlockedPieces(zoneId)
+    if not numUnlocked or not numTotal or numTotal <= 0 then
         return nil, nil
     end
     return numUnlocked, numTotal
@@ -408,8 +408,8 @@ function ACTIVITY_FINDER_PLUS.SelectMatchingDungeons(shouldSelect)
     local anySelected = false
     for activityId, dungeon in pairs(finderIndex) do
         if shouldSelect(activityId, dungeon) then
-            local ok, location = pcall(manager.GetSpecificLocation, manager, activityId)
-            if ok and location and not location:IsSelected() and not location:IsLocked() then
+            local location = manager:GetSpecificLocation(activityId)
+            if location and not location:IsSelected() and not location:IsLocked() then
                 manager:SetLocationSelected(location, true)
                 anySelected = true
             end
