@@ -879,6 +879,7 @@ function ACTIVITY_FINDER_PLUS.GetGoalPledges()
     if not ACTIVITY_FINDER_PLUS.EnhanceGAF then return end
 
     local pledgeData = {}
+    local seenNames = {}
     local dailyNames = ACTIVITY_FINDER_PLUS.dailyPledgeNames or GetTodayDailyPledgeNames()
 
     for i = 1, MAX_JOURNAL_QUESTS do
@@ -890,6 +891,21 @@ function ACTIVITY_FINDER_PLUS.GetGoalPledges()
                 haveQuest = stepType == QUEST_STEP_TYPE_AND,
                 daily = isDaily,
                 complete = stepType == QUEST_STEP_TYPE_OR
+            })
+            seenNames[questName] = true
+        end
+    end
+
+    -- Today's pledge givers are known from LibUndauntedPledges even before the
+    -- quest is accepted; surface those as a daily marker (no complete state
+    -- yet) so the row tag isn't gated on having picked up the quest.
+    for questName in pairs(dailyNames) do
+        if not seenNames[questName] then
+            table.insert(pledgeData, {
+                dungeon = questName,
+                haveQuest = false,
+                daily = true,
+                complete = nil,
             })
         end
     end
