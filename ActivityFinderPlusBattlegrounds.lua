@@ -1,3 +1,5 @@
+local ACTIVITY_FINDER_PLUS = ACTIVITY_FINDER_PLUS
+
 function ACTIVITY_FINDER_PLUS.OnDeathFragmentStateChange(_, newState)
     if not ACTIVITY_FINDER_PLUS.AutoRelease or newState ~= SCENE_FRAGMENT_SHOWING then return end
 

@@ -1,3 +1,5 @@
+local ACTIVITY_FINDER_PLUS = ACTIVITY_FINDER_PLUS
+
 function ACTIVITY_FINDER_PLUS.leaveGroup()
     if IsPlayerInGroup(ACTIVITY_FINDER_PLUS.playerName) then
         GroupLeave()

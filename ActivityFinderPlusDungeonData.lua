@@ -1,3 +1,5 @@
+local ACTIVITY_FINDER_PLUS = ACTIVITY_FINDER_PLUS
+
 ACTIVITY_FINDER_PLUS.DungeonData = {
     [1]={--Maj al-Ragath
         {questId = 3993, pledgeId=5247, name="Fungal Grotto I", normal={id=2, ac=294}, vet={id=299, ac=1556, hm=1561, tt=1559, nd=1560}},

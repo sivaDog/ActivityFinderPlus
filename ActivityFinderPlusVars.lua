@@ -72,4 +72,3 @@ function ACTIVITY_FINDER_PLUS.ApplyRuntimeSettings()
         ACTIVITY_FINDER_PLUS[key] = ACTIVITY_FINDER_PLUS.GetSetting(key)
     end
 end
-

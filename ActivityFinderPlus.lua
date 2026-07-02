@@ -1,3 +1,4 @@
+local ACTIVITY_FINDER_PLUS = ACTIVITY_FINDER_PLUS
 local addonName = ACTIVITY_FINDER_PLUS.name
 local em = ACTIVITY_FINDER_PLUS.eventManager
 local LEGACY_SAVED_VARS_NAME = "GroupSynergizerSavedVars"

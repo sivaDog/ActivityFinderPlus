@@ -1,3 +1,5 @@
+local ACTIVITY_FINDER_PLUS = ACTIVITY_FINDER_PLUS
+
 local readyCheckNotificationActive = false
 local finderActionButtonKeys = { "checkPledges", "checkSets", "checkSkillQuests" }
 
