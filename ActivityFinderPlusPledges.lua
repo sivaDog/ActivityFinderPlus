@@ -321,7 +321,7 @@ function ACTIVITY_FINDER_PLUS.DecorateDungeonRow(obj)
         ACTIVITY_FINDER_PLUS.Label(
             "ACTIVITY_FINDER_PLUS_DungeonCollection_" .. activityId,
             obj, {55, 20}, {LEFT, LEFT, 400, 0},
-            "ZoFontGameLarge", nil, {2, 1}, collectionText
+            "ZoFontGame", nil, {2, 1}, collectionText
         )
     end
 
@@ -331,15 +331,15 @@ function ACTIVITY_FINDER_PLUS.DecorateDungeonRow(obj)
     ACTIVITY_FINDER_PLUS.Label(
         "ACTIVITY_FINDER_PLUS_DungeonInfo_" .. activityId,
         obj, {80, 20}, {LEFT, LEFT, 465, 0},
-        "ZoFontGameLarge", nil, {0, 1}, BuildIconText(cacheEntry)
+        "ZoFontGame", nil, {0, 1}, BuildIconText(cacheEntry)
     )
 
     local completed, daily = GetPledgeStatus(ACTIVITY_FINDER_PLUS.pledgeJournal, cacheEntry.pledgeName)
     if obj.text then
         ACTIVITY_FINDER_PLUS.Label(
             "ACTIVITY_FINDER_PLUS_DungeonPledge_" .. activityId,
-            obj, {180, 20}, {LEFT, RIGHT, 5, -3, obj.text},
-            "ZoFontGameLarge", nil, {0, 1}, BuildPledgeText(completed, daily)
+            obj, {180, 16}, {LEFT, RIGHT, 5, -3, obj.text},
+            "ZoFontGame", nil, {0, 1}, BuildPledgeText(completed, daily)
         )
     end
     obj.pledge = completed == false
