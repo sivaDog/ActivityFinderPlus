@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.0.2] - 2026-07-04
+
+### Changed
+
+- Show set collection progress (xx/yy) in keyboard and gamepad dungeon detail panels
+- Adjust achievement info placement in the keyboard hover window
+- Fix dungeon row layout misalignment caused by large UI font sizes
+
 ## [1.0.1] - 2026-07-03
 
 ### Changed
@@ -48,5 +56,6 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - SavedVariables scoped per megaserver via `GetWorldName()`
 - Localization migrated from custom translation table to ZO `SI_` constants with `SafeAddString` for locale files
 
+[1.0.2]: https://github.com/sivaDog/ActivityFinderPlus/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/sivaDog/ActivityFinderPlus/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/sivaDog/ActivityFinderPlus/releases/tag/v1.0.0

@@ -190,6 +190,19 @@ local function BuildAchievementLine(done, text)
     return string.format("%s |%s%s|r", BuildAchievementMark(done), color, text)
 end
 
+-- Set collection progress line for the achievement panel (shared by the gamepad
+-- singular panel and the keyboard hover tooltip). collectionCache is keyed by
+-- activityId for both normal and vet ids, mapping to the same per-zone totals.
+local function BuildCollectionPanelLine(activityId)
+    if not ACTIVITY_FINDER_PLUS.ShowSetCollectionProgress then return nil end
+    local entry = ACTIVITY_FINDER_PLUS.collectionCache and ACTIVITY_FINDER_PLUS.collectionCache[activityId]
+    if not entry then return nil end
+
+    local color = entry.unlocked >= entry.total and "5eeb5e" or "aaaaaa"
+    return string.format("|c%s%s %d/%d|r",
+        color, GetString(SI_ACTIVITY_FINDER_PLUS_SET_COLLECTION), entry.unlocked, entry.total)
+end
+
 -- Shared by the gamepad singular panel and the keyboard hover tooltip.
 -- mode is "vet" or "normal"; only vet dungeons carry hm/tt/nd challenge IDs.
 function ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
@@ -198,6 +211,7 @@ function ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
 
     local parts = {}
     local cacheEntry = ACTIVITY_FINDER_PLUS.completionCache and ACTIVITY_FINDER_PLUS.completionCache[modeData.id]
+    local collectionLine = BuildCollectionPanelLine(modeData.id)
 
     if mode == "vet" then
         local header = "|cffcc66" .. GetString(SI_ACTIVITY_FINDER_PLUS_ACHIEVEMENTS_HEADER) .. "|r"
@@ -239,9 +253,15 @@ function ACTIVITY_FINDER_PLUS.BuildAchievementPanelText(dungeon, mode)
         end
     end
 
-    if #lines == 0 then return nil end
+    if #lines > 0 then
+        table.insert(parts, table.concat(lines, "\n"))
+    end
 
-    table.insert(parts, table.concat(lines, "\n"))
+    if collectionLine then
+        table.insert(parts, collectionLine)
+    end
+
+    if #parts == 0 then return nil end
 
     return table.concat(parts, "\n")
 end
@@ -734,7 +754,7 @@ local function GetKeyboardInlineAchievementLabel(parent)
     local label = WINDOW_MANAGER:CreateControl("ACTIVITY_FINDER_PLUS_KeyboardInlineAchievements", parent, CT_LABEL)
     label:SetFont("ZoFontGameLarge")
     label:SetHorizontalAlignment(TEXT_ALIGN_LEFT)
-    label:SetVerticalAlignment(TEXT_ALIGN_TOP)
+    label:SetVerticalAlignment(TEXT_ALIGN_BOTTOM)
     label:SetDimensions(KEYBOARD_TOOLTIP_WIDTH - 40, 160)
     label:SetDrawTier(2)
     keyboardInlineAchievementLabel = label
@@ -744,19 +764,21 @@ end
 local function ShowInline(achievementText)
     local tooltip = ZO_ActivityFinderTemplateTooltip_Keyboard
     local tooltipContents = tooltip:GetNamedChild("Contents")
-    local setTypesSectionControl = tooltipContents:GetNamedChild("SetTypesSection")
-
-    local label = GetKeyboardInlineAchievementLabel(tooltipContents)
-    label:ClearAnchors()
-    label:SetAnchor(TOPLEFT, setTypesSectionControl, BOTTOMLEFT, 0, 10)
-    label:SetText(achievementText or "")
-    label:SetHidden(not achievementText)
 
     local extraHeight = 0
     if achievementText then
         extraHeight = CountTextLines(achievementText) * KEYBOARD_TOOLTIP_LINE_HEIGHT + 20
     end
     tooltip:SetDimensions(KEYBOARD_TOOLTIP_WIDTH, KEYBOARD_TOOLTIP_BASE_HEIGHT + extraHeight)
+
+    -- Bottom-align to the tooltip's lower edge so our text sits below whatever
+    -- other addons (e.g. DungeonTracker) inject right under SetTypesSection,
+    -- avoiding overlap with their content.
+    local label = GetKeyboardInlineAchievementLabel(tooltipContents)
+    label:ClearAnchors()
+    label:SetAnchor(BOTTOMLEFT, tooltipContents, BOTTOMLEFT, 0, -10)
+    label:SetText(achievementText or "")
+    label:SetHidden(not achievementText)
 end
 
 local function HideInline()

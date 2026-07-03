@@ -11,7 +11,7 @@
 ; Maintained by FirewoodDoge — https://github.com/sivaDog/ActivityFinderPlus
 
 ## Title: Activity Finder Plus
-## Version: 1.0.0
+## Version: 1.0.2
 ## Author: FirewoodDoge
 ## DependsOn: LibAddonMenu-2.0>=43 LibUndauntedPledges>=102020
 ## OptionalDependsOn: LibSets

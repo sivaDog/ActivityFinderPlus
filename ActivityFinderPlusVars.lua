@@ -1,7 +1,7 @@
 ACTIVITY_FINDER_PLUS = {}
 
 ACTIVITY_FINDER_PLUS.name = "ActivityFinderPlus"
-ACTIVITY_FINDER_PLUS.version = "1.0.0"
+ACTIVITY_FINDER_PLUS.version = "1.0.2"
 ACTIVITY_FINDER_PLUS.displayName = "Activity Finder Plus"
 ACTIVITY_FINDER_PLUS.author = "FirewoodDoge"
 ACTIVITY_FINDER_PLUS.authorDisplay = ACTIVITY_FINDER_PLUS.author
